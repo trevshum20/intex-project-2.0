@@ -41,7 +41,7 @@ class Drug(models.Model):
     isopioid = models.BooleanField(verbose_name='Opioid')
     avg = models.IntegerField(null=True)
     class Meta:
-        db_table = "drug"
+        db_table = "pd_drugs"
 
     def __str__(self):
         return (self.drugname)
