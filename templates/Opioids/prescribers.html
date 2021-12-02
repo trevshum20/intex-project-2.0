@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>
     <table>
         <tr>
@@ -24,3 +25,14 @@
         {%endfor%}
     </table>
 </div>
+=======
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        {% for prescriber in prescribers %}
+            <p>{{prescriber.fname}} {{prescriber.lname}} {{prescriber.credential}}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+>>>>>>> master

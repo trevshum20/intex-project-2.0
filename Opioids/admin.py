@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import pd_drugs, pd_prescriber, pd_statedata, pd_triple
+from .models import Specialty, Prescriber, Drug, Prescriber_Drug, pd_statedata
 # Register your models here.
-admin.site.register(pd_prescriber)
-admin.site.register(pd_triple)
-admin.site.register(pd_drugs)
+admin.site.register(Specialty)
+admin.site.register(Prescriber)
+admin.site.register(Drug)
+admin.site.register(Prescriber_Drug)
 admin.site.register(pd_statedata)

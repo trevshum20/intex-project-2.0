@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<<<<<<< HEAD
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -19,6 +20,9 @@
                 </div>
             </div>
         </nav>
+=======
+    
+>>>>>>> master
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
@@ -26,7 +30,14 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
+                        <form name="form" method="post" action="{% url 'search' %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <label for="searchValue" hidden></label>
+                                <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <button type="submit" class="btn btn-outline-primary">search</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -189,5 +200,5 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+    
 {% endblock %}
