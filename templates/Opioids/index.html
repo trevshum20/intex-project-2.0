@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
@@ -12,6 +11,7 @@
                         <form name="form" method="post" action="{% url 'search' %}">
                             {% csrf_token %}
                             <div class="input-group">
+                                <label for="searchValue" hidden></label>
                                 <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                 <button type="submit" class="btn btn-outline-primary">search</button>
                             </div>
