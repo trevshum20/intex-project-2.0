@@ -1,0 +1,14 @@
+<div>
+    <table>
+        <tr>
+            <th>Drug Name</th>
+            <th>IsOpiate?</th>
+        </tr>
+        {% for counter in drugs %}
+        <tr>
+            <td>{{counter.drugname}}</td>
+            <td>{{counter.isopioid}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>

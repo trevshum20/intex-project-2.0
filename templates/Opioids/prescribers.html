@@ -1,0 +1,26 @@
+<div>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Credentials</th>
+            <th>Location</th>
+            <th>Specialty</th>
+            <th>Info</th>
+            <th>Fill</th>
+        </tr>
+        {% for counter in prescribers %}
+        <tr>
+            <td hidden>{{counter.id}}</td>
+            <td>{{counter.fname}}</td>
+            <td>{{counter.lname}}</td>
+            <td>{{counter.gender}}</td>
+            <td>{{counter.credentials}}</td>
+            <td>{{counter.state}}</td>
+            <td>{{counter.specialty}}</td>
+            <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' %}">Prescriber Info</a> 
+        </tr>
+        {%endfor%}
+    </table>
+</div>
