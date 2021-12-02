@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import pd_drugs, pd_prescriber
+from .models import Drug, Prescriber
 #from .models import
 from Opioids.models import Prescriber
 from django.db.models import Q
@@ -7,7 +7,7 @@ from django.db.models import Q
 # Create your views here.
 
 def drugsPageView(request) :
-    drugs = pd_drugs.objects.all()
+    drugs = Drug.objects.all()
 
     context = {
         "drugs": drugs,
@@ -16,7 +16,7 @@ def drugsPageView(request) :
     return render(request, 'Opioids/drugs.html', context)
 
 def prescribersPageView(request) :
-    prescribers = pd_prescriber.objects.all()
+    prescribers = Prescriber.objects.all()
 
     context = {
         "prescribers": prescribers,
@@ -25,7 +25,7 @@ def prescribersPageView(request) :
     return render(request, 'Opioids/prescribers.html', context)
 
 def prescriberInfoPageView(request, prescriber_id) :
-    prescribers = pd_prescriber.objects.get(id = prescriber_id)
+    prescribers = Prescriber.objects.get(id = prescriber_id)
 
     context = {
         "prescribers": prescribers,
@@ -37,14 +37,14 @@ def indexPageView(request) :
 
 def searchPageView(request) :
     if(request.method == 'POST'):
-        searchTerm = request.POST['searchValue']
-
+        searchTerm = request.POST['searchValue']    
+        print('before query')
         data = Prescriber.objects.filter(Q(fname__icontains=searchTerm) | Q(lname__icontains=searchTerm))
-
+        print(data)
         context = {
             "prescribers" : data,
         }
 
-        return render(request, 'Opioids/prescribers.html', context)
+        return render(request, 'Opioids/prescribersSearch.html', context)
     else:
         return render(request, 'Opioids/index.html')

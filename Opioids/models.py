@@ -17,7 +17,6 @@ class Prescriber(models.Model):
     fname = models.CharField(max_length=50, null=True)
     lname = models.CharField(max_length=50, null=True)
     gender = models.CharField(max_length=1, null=True)
-    state = models.CharField(max_length=2, null=True)
     credential = models.CharField(max_length=20, null=True)
     specialty = models.ForeignKey(Specialty, on_delete=DO_NOTHING, null=True)
 
@@ -32,7 +31,7 @@ class Drug(models.Model):
     isopioid = models.BooleanField(verbose_name='Opioid')
     avg = models.IntegerField(null=True)
     class Meta:
-        db_table = "pd_drugs"
+        db_table = "drug"
 
     def __str__(self):
         return (self.drugname)
@@ -45,8 +44,8 @@ class Prescriber_Drug(models.Model):
         db_table = "prescriber_drug"
 
     def __str__(self):
-
         return (self.prescriber + ' ' + self.drug)
+
 class pd_statedata(models.Model):
     state = models.CharField(max_length=20, null=True)
     stateabbrev = models.CharField(max_length=2, null=True)
