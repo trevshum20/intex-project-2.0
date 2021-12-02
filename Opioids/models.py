@@ -30,9 +30,9 @@ class Prescriber(models.Model):
 class Drug(models.Model):
     drugname = models.CharField(max_length=255, null=True)
     isopioid = models.BooleanField(verbose_name='Opioid')
-
+    avg = models.IntegerField(null=True)
     class Meta:
-        db_table = "drug"
+        db_table = "pd_drugs"
 
     def __str__(self):
         return (self.drugname)
@@ -47,6 +47,17 @@ class Prescriber_Drug(models.Model):
     def __str__(self):
         return (self.prescriber + ' ' + self.drug)
 
+
+class pd_statedata(models.Model):
+    state = models.CharField(max_length=20, null=True)
+    stateabbrev = models.CharField(max_length=2, null=True)
+    population = models.IntegerField(null=True)
+    deaths = models.IntegerField(null=True)
+    class Meta:
+        db_table = "pd_statedata"
+
+    def __str__(self):
+        return str(self.deaths)
 
 # class pd_prescriber(models.Model):
 #     fname = models.CharField(max_length=11, null=True)
@@ -85,15 +96,5 @@ class Prescriber_Drug(models.Model):
 #     def __str__(self):
 #         return self.qty
 
-# class pd_statedata(models.Model):
-#     state = models.CharField(max_length=20, null=True)
-#     stateabbrev = models.CharField(max_length=2, null=True)
-#     population = models.IntegerField(null=True)
-#     deaths = models.IntegerField(null=True)
-#     class Meta:
-#         db_table = "pd_statedata"
 
-#     def __str__(self):
-#         return str(self.deaths)
 
-        
