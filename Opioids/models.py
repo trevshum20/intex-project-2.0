@@ -12,12 +12,21 @@ class Specialty (models.Model):
     def __str__(self):
         return (self.specialty)
 
+class pd_statedata(models.Model):
+    state = models.CharField(max_length=20, null=True)
+    stateabbrev = models.CharField(max_length=2, null=True, unique=True)
+    population = models.IntegerField(null=True)
+    deaths = models.IntegerField(null=True)
+    class Meta:
+        db_table = "pd_statedata"
 
+    def __str__(self):
+        return str(self.stateabbrev)
 class Prescriber(models.Model):
     fname = models.CharField(max_length=50, null=True)
     lname = models.CharField(max_length=50, null=True)
     gender = models.CharField(max_length=1, null=True)
-    state = models.CharField(max_length=2, null=True)
+    state = models.ForeignKey(pd_statedata, on_delete=DO_NOTHING, to_field="stateabbrev")
     credential = models.CharField(max_length=20, null=True)
     specialty = models.ForeignKey(Specialty, on_delete=DO_NOTHING, null=True)
 
@@ -48,16 +57,7 @@ class Prescriber_Drug(models.Model):
         return (self.prescriber + ' ' + self.drug)
 
 
-class pd_statedata(models.Model):
-    state = models.CharField(max_length=20, null=True)
-    stateabbrev = models.CharField(max_length=2, null=True)
-    population = models.IntegerField(null=True)
-    deaths = models.IntegerField(null=True)
-    class Meta:
-        db_table = "pd_statedata"
 
-    def __str__(self):
-        return str(self.deaths)
 
 # class pd_prescriber(models.Model):
 #     fname = models.CharField(max_length=11, null=True)
