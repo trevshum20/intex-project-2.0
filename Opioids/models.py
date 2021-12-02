@@ -18,6 +18,7 @@ class Prescriber(models.Model):
     lname = models.CharField(max_length=50, null=True)
     gender = models.CharField(max_length=1, null=True)
     credential = models.CharField(max_length=20, null=True)
+    state = models.CharField(max_length=2, null=True)
     specialty = models.ForeignKey(Specialty, on_delete=DO_NOTHING, null=True)
 
     class Meta:
