@@ -28,7 +28,6 @@ class Prescriber(models.Model):
     gender = models.CharField(max_length=1, null=True)
     state = models.ForeignKey(pd_statedata, on_delete=DO_NOTHING, to_field="stateabbrev")
     credential = models.CharField(max_length=20, null=True)
-    state = models.CharField(max_length=2, null=True)
     specialty = models.ForeignKey(Specialty, on_delete=DO_NOTHING, null=True)
 
     class Meta:
