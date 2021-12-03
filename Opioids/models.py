@@ -54,7 +54,7 @@ class Prescriber_Drug(models.Model):
         db_table = "prescriber_drug"
 
     def __str__(self):
-        return (self.prescriber + ' ' + self.drug)
+        return (str(self.prescriber) + ' ' + str(self.drug))
 
 
 
