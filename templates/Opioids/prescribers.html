@@ -17,7 +17,7 @@
         <td>{{counter.credentials}}</td>
         {% comment %} <td>{{counter.state}}</td>
         <td>{{counter.specialty}}</td> {% endcomment %}
-        <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' %}">Prescriber Info</a> 
+        <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=counter.id %}">Prescriber Info</a> 
     </tr>
     {%endfor%}
 </table>
