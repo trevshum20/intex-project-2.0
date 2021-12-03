@@ -19,7 +19,11 @@
         <td>{{counter.lname}}</td>
         <td>{{counter.gender}}</td>
         <td>{{counter.credential}}</td>
-        <td>{{counter.isopioidprescriber}}</td>
+        {% if counter.isopioidprescriber %}
+            <td>Yes</td>
+        {% else %}
+          <td>No</td>
+        {% endif %}
         <td>{{counter.state}}</td>
         <td>{{counter.specialty}}</td>
         <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=counter.id %}">Prescriber Info</a>
