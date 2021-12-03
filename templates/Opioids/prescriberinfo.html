@@ -39,12 +39,14 @@
                     <th>Drug Name</th>
                     <th>Quantity Prescribed</th>
                     <th>Average Quantity</th>
+                    <th>Is Opioid?</th>
                 </tr>
                 {% for pd in prescriber_drug %}
                 <tr>
                     <td>{{pd.drug.drugname}}</td>
                     <td>{{pd.quantity}}</td>
                     <td>{{pd.drug.avg}}</td>
+                    <td>{{pd.drug.isopioid}}</td>
                 {%endfor%}
             </table>
         </div>
