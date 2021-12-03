@@ -29,7 +29,7 @@ class Prescriber(models.Model):
     state = models.ForeignKey(pd_statedata, on_delete=DO_NOTHING, to_field="stateabbrev")
     credential = models.CharField(max_length=20, null=True)
     specialty = models.ForeignKey(Specialty, on_delete=DO_NOTHING, null=True)
-    isopioidprescriber = models.BooleanField(null=True)
+    isopioidprescriber = models.BooleanField(verbose_name='Opioid Prescriber',null=True)
 
     class Meta:
         db_table = "prescriber"
