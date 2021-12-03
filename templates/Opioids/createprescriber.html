@@ -1,49 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Prescriber</title>
-</head>
-    <h4>New Prescriber</h4>
-<body>
-    <fieldset style="width:0px;">
-    <legend>Prescriber Info</legend>
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" maxlength="30" required autofocus>
-        <br><br>
-
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" maxlength="30" required>
-        <br><br>
-
-        <fieldset style="width:80px;">
-            <legend>Gender</legend>
-                <label for="male">Male</label>
-                <input type="radio" id="male" value="male" name="gender">
-                <label for="female">Female</label>
-                <input type="radio" id="female" value="female" name="gender">
-            </fieldset>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Prescriber</title>
+    </head>
+        <h1>New Prescriber</h1>
+        <br>
+    <body>
+        <fieldset style="width:1000px;">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" maxlength="30" required autofocus>
             <br><br>
 
-        <label for="state" title="Enter as state abbreviation. i.e CA">Location</label>
-        <input type="text" id="state" title="Enter as state abbreviation. i.e CA" maxlength="2" style="width:30px;" required>
-        <br><br>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" maxlength="30" required>
+            <br><br>
 
-        <label for="opioidprescriber">Is Opiod Prescriber</label>
-        <input type="checkbox" id="opioidprescriber" name="opioidprescriber" value="True">
-        <br><br>
+            <fieldset style="width:80px;">
+                <legend>Gender</legend>
+                    <label for="male">Male</label>
+                    <input type="radio" id="male" value="male" name="gender">
+                    <label for="female">Female</label>
+                    <input type="radio" id="female" value="female" name="gender">
+                </fieldset>
+                <br>
 
-        <label for="credential">Credentials</label>
-        <input type="text" id="credential" maxlength="30" required>
-        <br><br>
+            <label for="state" title="Enter as state abbreviation. i.e CA">Location</label>
+            <input type="text" id="state" title="Enter as state abbreviation. i.e CA" maxlength="2" style="width:30px;" required>
+            <br><br>
 
-        <label for="specialty">Specialty</label>
-        <input type="text" id="specialty" maxlength="255" required>
-        <br><br>
-    </fieldset>
-    <br>
-    <button type="submit">Create</button>
-</body>
-</html>
+            <label for="opioidprescriber">Is Opiod Prescriber</label>
+            <input type="checkbox" id="opioidprescriber" name="opioidprescriber" value="True">
+            <br><br>
+
+            <label for="credential">Credentials</label>
+            <input type="text" id="credential" maxlength="30" required>
+            <br><br>
+
+            <label for="specialty">Specialty</label>
+            <input type="text" id="specialty" maxlength="255" required>
+            <br><br>
+        </fieldset>
+
+        <button type="submit">Create</button>
+    </body>
+{% endblock %}
