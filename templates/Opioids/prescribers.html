@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <table>
     <tr>
         <th>First Name</th>
@@ -15,9 +18,10 @@
         <td>{{counter.lname}}</td>
         <td>{{counter.gender}}</td>
         <td>{{counter.credentials}}</td>
-        {% comment %} <td>{{counter.state}}</td>
-        <td>{{counter.specialty}}</td> {% endcomment %}
+        <td>{{counter.state}}</td>
+        <td>{{counter.specialty}}</td>
         <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=counter.id %}">Prescriber Info</a> 
     </tr>
     {%endfor%}
 </table>
+{% endblock %}

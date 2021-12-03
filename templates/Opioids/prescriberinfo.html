@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prescriber Info</title>
-</head>
-<body>
-    <table>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+   <table>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -26,5 +20,17 @@
             <td>{{prescribers.specialty}}</td>
         </tr>
     </table>
-</body>
-</html>
+    <table>
+        <tr>
+            <th>Drug Name</th>
+            <th>Quantity Prescribed</th>
+            <th>Average Quantity</th>
+        </tr>
+        {% for pd in prescriber_drug %}
+        <tr>
+            <td>{{pd.drug.drugname}}</td>
+            <td>{{pd.quantity}}</td>
+            <td>{{pd.drug.avg}}</td>
+        {%endfor%}
+    </table>
+{% endblock %}
