@@ -1,38 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-   <table class="table table-sm table-dark">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Credentials</th>
-            <th>Location</th>
-            <th>Specialty</th>
-        </tr>
-        <tr>
-            <td hidden>{{prescribers.id}}</td>
-            <td>{{prescribers.fname}}</td>
-            <td>{{prescribers.lname}}</td>
-            <td>{{prescribers.gender}}</td>
-            <td>{{prescribers.credential}}</td>
-            <td>{{prescribers.state}}</td>
-            <td>{{prescribers.specialty}}</td>
-        </tr>
-    </table>
-    <br>
-    <h1>{{prescribers.fname}}'s Prescriptions</h1>
-    <table class="table table-sm table-dark">
-        <tr>
-            <th>Drug Name</th>
-            <th>Quantity Prescribed</th>
-            <th>Average Quantity</th>
-        </tr>
-        {% for pd in prescriber_drug %}
-        <tr>
-            <td>{{pd.drug.drugname}}</td>
-            <td>{{pd.quantity}}</td>
-            <td>{{pd.drug.avg}}</td>
-        {%endfor%}
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+                <div class="card p-4">
+                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <img class="rounded-circle z-depth-2" src="https://marriott.byu.edu/msmadmin/securefile/empphoto?pid=29146" height="100" width="100" /> <span class="name mt-3">{{prescribers.fname}} {{prescribers.lname}} {{prescribers.credential}}</span>
+                        
+                        <div class=" d-flex mt-2"> <button class="btn1 btn-dark">Edit Profile</button> </div>
+                        <div class="text mt-3">Gender: {{prescribers.gender}}</div>
+                        <div class="text mt-3">Specialty: {{prescribers.specialty}}</div>
+                        <div class="text mt-3">State: {{prescribers.state.state}}</div>
+                        <div class="text mt-3">State Population: {{prescribers.state.population}}</div>
+                        <div class="text mt-3">State Opioid Deaths: {{prescribers.state.deaths}}</div>
+
+                        <div class="text mt-3">Opioid Prescription Intel: 
+                            Based on recommendations of doctors nationwide, 
+                            {% if prescribers.specialty.weight == 3 %}
+                                {{prescribers.fname}} should be expected to prescribe a <b>high</b> amount of opioids without risk of wrongful opioid death.
+                            {% elif prescribers.specialty.weight == 2 %}
+                                {{prescribers.fname}} should be expected to prescribe a <b>medium</b> amount of opioids without risk of wrongful opioid death.
+                            {% elif prescribers.specialty.weight == 1 %}
+                                {{prescribers.fname}} should be expected to prescribe a <b>low</b> amount of opioids without risk of wrongful opioid death.
+                            {% else %}
+                                {{prescribers.fname}} should <b>never</b> be prescribing any amount of opioids to patients. Any discrepancy should be investigated.
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <h1>{{prescribers.fname}}'s Prescriptions</h1>
+            <table class="table table-sm table-dark">
+                <tr>
+                    <th>Drug Name</th>
+                    <th>Quantity Prescribed</th>
+                    <th>Average Quantity</th>
+                </tr>
+                {% for pd in prescriber_drug %}
+                <tr>
+                    <td>{{pd.drug.drugname}}</td>
+                    <td>{{pd.quantity}}</td>
+                    <td>{{pd.drug.avg}}</td>
+                {%endfor%}
+            </table>
+        </div>
+        
+    </div>
+    
 {% endblock %}

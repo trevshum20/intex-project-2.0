@@ -49,8 +49,14 @@ def searchPageView(request) :
                 "prescribers" : data,
             }
             return render(request, 'Opioids/prescribers.html', context)
-        else :
+        elif option == "drugs" :
             data = Drug.objects.filter(drugname__icontains=searchTerm)
+            context = {
+                "drugs" : data,
+            }
+            return render(request, 'Opioids/drugs.html', context)
+        else: 
+            data = Drug.objects.filter(drugname__icontains=searchTerm, isopioid = True)
             context = {
                 "drugs" : data,
             }
