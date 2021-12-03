@@ -15,8 +15,8 @@
         <td>{{counter.lname}}</td>
         <td>{{counter.gender}}</td>
         <td>{{counter.credentials}}</td>
-        <td>{{counter.state_id}}</td>
-        <td>{{counter.specialty}}</td>
+        {% comment %} <td>{{counter.state}}</td>
+        <td>{{counter.specialty}}</td> {% endcomment %}
         <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' %}">Prescriber Info</a> 
     </tr>
     {%endfor%}
