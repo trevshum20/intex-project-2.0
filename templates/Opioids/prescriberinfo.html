@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-   <table>
+   <table class="table table-sm table-dark">
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -15,12 +15,14 @@
             <td>{{prescribers.fname}}</td>
             <td>{{prescribers.lname}}</td>
             <td>{{prescribers.gender}}</td>
-            <td>{{prescribers.credentials}}</td>
+            <td>{{prescribers.credential}}</td>
             <td>{{prescribers.state}}</td>
             <td>{{prescribers.specialty}}</td>
         </tr>
     </table>
-    <table>
+    <br>
+    <h1>{{prescribers.fname}}'s Prescriptions</h1>
+    <table class="table table-sm table-dark">
         <tr>
             <th>Drug Name</th>
             <th>Quantity Prescribed</th>

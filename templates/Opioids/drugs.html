@@ -1,14 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <div>
-    <table>
+    <table class="table table-sm table-dark">
         <tr>
             <th>Drug Name</th>
-            <th>IsOpiate?</th>
+            <th>Is Opiate?</th>
         </tr>
         {% for counter in drugs %}
         <tr>
             <td>{{counter.drugname}}</td>
-            <td>{{counter.isopioid}}</td>
+            {% if counter.isopioid %}
+                <td>Yes</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
         </tr>
         {%endfor%}
     </table>
 </div>
+{% endblock %}

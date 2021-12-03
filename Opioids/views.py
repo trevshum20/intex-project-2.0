@@ -46,6 +46,6 @@ def searchPageView(request) :
             "prescribers" : data,
         }
 
-        return render(request, 'Opioids/prescribersSearch.html', context)
+        return render(request, 'Opioids/prescribers.html', context)
     else:
         return render(request, 'Opioids/index.html')
