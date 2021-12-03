@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Drug, Prescriber, Prescriber_Drug
 #from .models import
-from Opioids.models import Prescriber
+# from Opioids.models import Prescriber
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -73,3 +73,14 @@ def searchPageView(request) :
             return render(request, 'Opioids/drugs.html', context)
     else:
         return render(request, 'Opioids/index.html')
+
+def createPrescriberPageView(request) :
+    return render(request, 'Opioids/createprescriber.html')
+
+def editPrescriberPageView(request, prescriber_id) :
+    prescribers = Prescriber.objects.get(id = prescriber_id)
+
+    context = {
+        "prescribers": prescribers,
+    }
+    return render(request, 'Opioids/editprescriber.html', context)
