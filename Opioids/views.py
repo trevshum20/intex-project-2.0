@@ -38,9 +38,7 @@ def indexPageView(request) :
 def searchPageView(request) :
     if(request.method == 'POST'):
         searchTerm = request.POST['searchValue']    
-        print('before query')
         data = Prescriber.objects.filter(Q(fname__icontains=searchTerm) | Q(lname__icontains=searchTerm))
-        print(data)
         context = {
             "prescribers" : data,
         }
