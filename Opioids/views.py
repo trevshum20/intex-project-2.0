@@ -3,6 +3,7 @@ from .models import Drug, Prescriber, Prescriber_Drug
 #from .models import
 from Opioids.models import Prescriber
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -16,7 +17,16 @@ def drugsPageView(request) :
     return render(request, 'Opioids/drugs.html', context)
 
 def prescribersPageView(request) :
-    prescribers = Prescriber.objects.all()[:5]
+    prescriber_list = Prescriber.objects.all()
+    page = request.GET.get('page',1)
+    paginator = Paginator(prescriber_list,9)
+
+    try:
+        prescribers = paginator.page(page)
+    except PageNotAnInteger:
+        prescribers = paginator.page(1)
+    except EmptyPage:
+        prescribers = paginator.page(paginator.num_pages)
 
     context = {
         "prescribers": prescribers,

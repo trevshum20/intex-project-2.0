@@ -7,6 +7,7 @@
         <th>Last Name</th>
         <th>Gender</th>
         <th>Credentials</th>
+        <th>Is Opiod Prescriber</th>
         <th>Location</th>
         <th>Specialty</th>
         <th>Info</th>
@@ -18,10 +19,26 @@
         <td>{{counter.lname}}</td>
         <td>{{counter.gender}}</td>
         <td>{{counter.credential}}</td>
+        <td>{{counter.isopioidprescriber}}</td>
         <td>{{counter.state}}</td>
         <td>{{counter.specialty}}</td>
         <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=counter.id %}">Prescriber Info</a> 
     </tr>
     {%endfor%}
 </table>
+
+{% if prescribers.has_other_pages %}
+  <ul class="pagination">
+    {% if prescribers.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ prescribers.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% if prescribers.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ prescribers.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul> 
+{% endif %}
 {% endblock %}
