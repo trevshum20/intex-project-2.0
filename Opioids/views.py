@@ -30,7 +30,7 @@ def prescriberInfoPageView(request, prescriber_id) :
     context = {
         "prescribers": prescribers,
     }
-    return render(request, 'Opioids/prescriberinfo.html')
+    return render(request, 'Opioids/prescriberinfo.html', context)
 
 def indexPageView(request) :
     return render(request, 'Opioids/index.html')
