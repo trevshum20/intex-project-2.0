@@ -84,3 +84,6 @@ def editPrescriberPageView(request, prescriber_id) :
         "prescribers": prescribers,
     }
     return render(request, 'Opioids/editprescriber.html', context)
+
+def FAQPageView(request) :
+    return render(request, 'Opioids/FAQ.html')
