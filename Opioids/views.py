@@ -40,12 +40,20 @@ def indexPageView(request) :
 
 def searchPageView(request) :
     if(request.method == 'POST'):
-        searchTerm = request.POST['searchValue']    
-        data = Prescriber.objects.filter(Q(fname__icontains=searchTerm) | Q(lname__icontains=searchTerm))
-        context = {
-            "prescribers" : data,
-        }
-
-        return render(request, 'Opioids/prescribers.html', context)
+        searchTerm = request.POST['searchValue'] 
+        # This is getting the value of whatever is in the post form
+        option = request.POST['optradio']
+        if option == "prescribers" :
+            data = Prescriber.objects.filter(Q(fname__icontains=searchTerm) | Q(lname__icontains=searchTerm))
+            context = {
+                "prescribers" : data,
+            }
+            return render(request, 'Opioids/prescribers.html', context)
+        else :
+            data = Drug.objects.filter(drugname__icontains=searchTerm)
+            context = {
+                "drugs" : data,
+            }
+            return render(request, 'Opioids/drugs.html', context)
     else:
         return render(request, 'Opioids/index.html')

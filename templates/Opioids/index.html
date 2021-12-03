@@ -6,7 +6,7 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
+                        <h1 class="mx-auto my-0 text-uppercase">Opioid Crisis</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
                         <form name="form" method="post" action="{% url 'search' %}">
                             {% csrf_token %}
@@ -15,6 +15,12 @@
                                 <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                 <button type="submit" class="btn btn-outline-primary">search</button>
                             </div>
+                            <label class="radio-inline radiobuttonsindex">
+                                <input type="radio" value="prescribers" name="optradio" checked>Prescribers
+                            </label>
+                            <label class="radio-inline radiobuttonsindex">
+                                <input type="radio" value="drugs" name="optradio">Drugs
+                            </label>
                         </form>
                     </div>
                 </div>
