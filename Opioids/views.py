@@ -75,7 +75,15 @@ def searchPageView(request) :
         return render(request, 'Opioids/index.html')
 
 def createPrescriberPageView(request) :
-    return render(request, 'Opioids/createprescriber.html')
+    specialties = Specialty.objects.all()
+    states = pd_statedata.objects.all()
+
+    context = {
+        "specialties": specialties,
+        "states": states
+    }
+
+    return render(request, 'Opioids/createprescriber.html', context)
 
 def editPrescriberPageView(request, prescriber_id) :
     prescribers = Prescriber.objects.get(id = prescriber_id)
@@ -100,13 +108,45 @@ def updatePrescriberPageView(request) :
         prescribers.lname = request.POST['lname']
         prescribers.gender = request.POST['gender']
         prescribers.state = state
-        prescribers.opioidprescriber = request.POST['opioidprescriber']
+        canPrescribeOpioids = False
+        if request.POST['opioidprescriber'] == "on" :
+            canPrescribeOpioids = True
+        print(canPrescribeOpioids)
+        prescribers.isopioidprescriber = canPrescribeOpioids
         prescribers.credential = request.POST['credential']
         prescribers.specialty = specialty
 
         prescribers.save()
 
     return prescriberInfoPageView(request, prescriber_id)
+
+def createNewPrescriberPageView(request) :
+    if request.method == 'POST':
+        prescriber = Prescriber()
+        state = pd_statedata.objects.get(id = request.POST['state'])
+        specialty = Specialty.objects.get(id = request.POST['specialty'])
+        prescriber.fname = request.POST['fname']
+        prescriber.lname = request.POST['lname']
+        prescriber.gender = request.POST['gender']
+        prescriber.state = state
+
+        canPrescribeOpioids = False
+        if request.POST['opioidprescriber'] == "on" :
+            canPrescribeOpioids = True
+        print(canPrescribeOpioids)
+        prescriber.isopioidprescriber = canPrescribeOpioids
+        # If it's not on, set it to false.
+        
+        prescriber.credential = request.POST['credential']
+        prescriber.specialty = specialty
+
+        prescriber.save()
+        
+        print(prescriber.id)
+        return prescriberInfoPageView(request, prescriber.id)
+    
+    return indexPageView(request)
+
 
 def FAQPageView(request) :
     return render(request, 'Opioids/FAQ.html')

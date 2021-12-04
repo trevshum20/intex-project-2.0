@@ -1,50 +1,64 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Create Prescriber</title>
-    </head>
-        <h1>New Prescriber</h1>
-        <br>
-    <body>
-        <fieldset style="width:1000px;">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" maxlength="30" required autofocus>
-            <br><br>
 
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" maxlength="30" required>
-            <br><br>
+    <h1 style="text-align: center;">Add New Prescriber</h1>
+    <br>
+    <div class="custom-form">
+        <form method="post" name="form" action="{% url 'createNewPrescriber'%}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <fieldset>
+                <!-- <legend style="font-size:32px;">Prescriber Info</legend> -->
+                    <input type="hidden" value= {{prescribers.id}} name="prescribers_id">
 
-            <fieldset style="width:80px;">
-                <legend>Gender</legend>
-                    <label for="male">Male</label>
-                    <input type="radio" id="male" value="male" name="gender">
-                    <label for="female">Female</label>
-                    <input type="radio" id="female" value="female" name="gender">
+                    <label style="font-size: 18px;" for="fname">First Name</label>
+                    <input name="fname" class="form-control" type="text" id="fname" maxlength="30" value = {{prescribers.fname}}>
+                    <br>
+
+                    <label style="font-size: 18px;" for="lname">Last Name</label>
+                    <input name="lname" class="form-control" type="text" id="lname" maxlength="30" value = {{prescribers.lname}}>
+                    <br>
+
+                    <fieldset style="width:80px;">
+                    <legend style="font-size:18px;">Gender</legend>
+                        <label class="custom-control-label" for="male">Male</label>
+                        <input class="form-check-input" type="radio" id="male" value="M" name="gender" {% if prescribers.gender == "M" %} checked {% endif%}>
+                        <label class="custom-control-label" for="female">Female</label>
+                        <input class="form-check-input" type="radio" id="female" value="F" name="gender" {% if prescribers.gender == "F" %} checked {% endif%}>
+                    </fieldset>
+                    <br>
+
+                    <label style="font-size: 18px;" for="state" title="Enter as state abbreviation. i.e CA">Location</label>
+                    <select class="form-select" name="state" id="state">
+                        {% for counter in states %}
+                        <option value={{counter.id}}>{{counter.state}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+
+                    <label class="form-check-label" for="opioidprescriber">Are they an opioid prescriber?</label>
+                    <input name="opioidprescriber" class="form-check-input" type="checkbox" id="opioidprescriber" name="opioidprescriber" {% if prescribers.isopioidprescriber == True %} checked {% endif %}>
+                    <br><br>
+
+                    <label style="font-size: 18px;" for="credential">Credentials</label>
+                    <input name="credential" class="form-control" type="text" id="credential" maxlength="30" value={{prescribers.credential}}>
+                    <br>
+                    <label style="font-size: 18px;" for="specialty">Specialty</label>
+                    <select class="form-select" name="specialty" id="specialty">
+                        {% for counter in specialties %}
+                        <option value={{counter.id}}>{{counter.specialty}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
                 </fieldset>
-                <br>
+                <div style="text-align: center;">
+                <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </div>
+        </form> 
+    </div>
 
-            <label for="state" title="Enter as state abbreviation. i.e CA">Location</label>
-            <input type="text" id="state" title="Enter as state abbreviation. i.e CA" maxlength="2" style="width:30px;" required>
-            <br><br>
-
-            <label for="opioidprescriber">Is Opiod Prescriber</label>
-            <input type="checkbox" id="opioidprescriber" name="opioidprescriber" value="True">
-            <br><br>
-
-            <label for="credential">Credentials</label>
-            <input type="text" id="credential" maxlength="30" required>
-            <br><br>
-
-            <label for="specialty">Specialty</label>
-            <input type="text" id="specialty" maxlength="255" required>
-            <br><br>
-        </fieldset>
-
-        <button type="submit">Create</button>
-    </body>
 {% endblock %}
