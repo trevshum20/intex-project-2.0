@@ -40,6 +40,7 @@
                     <th>Quantity Prescribed</th>
                     <th>Average Quantity</th>
                     <th>Is Opioid?</th>
+                    <th>Drug Info</th>
                 </tr>
                 {% for pd in prescriber_drug %}
                 <tr>
@@ -47,6 +48,7 @@
                     <td>{{pd.quantity}}</td>
                     <td>{{pd.drug.avg}}</td>
                     <td>{{pd.drug.isopioid}}</td>
+                    <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'viewDrug' drug_id=pd.drug.id %}">View Info</a></td>
                 {%endfor%}
             </table>
         </div>
