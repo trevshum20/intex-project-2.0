@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Drug, Prescriber, Prescriber_Drug
+from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty
 #from .models import
 # from Opioids.models import Prescriber
 from django.db.models import Q
@@ -79,9 +79,13 @@ def createPrescriberPageView(request) :
 
 def editPrescriberPageView(request, prescriber_id) :
     prescribers = Prescriber.objects.get(id = prescriber_id)
+    specialties = Specialty.objects.all()
+    states = pd_statedata.objects.all()
 
     context = {
         "prescribers": prescribers,
+        "specialties" : specialties,
+        "states" : states
     }
     return render(request, 'Opioids/editprescriber.html', context)
 
@@ -89,18 +93,20 @@ def updatePrescriberPageView(request) :
     if request.method == 'POST':
         prescriber_id = request.POST['prescribers_id']
         prescribers = Prescriber.objects.get(id = prescriber_id)
-
+    
+        state = pd_statedata.objects.get(id = request.POST['state'])
+        specialty = Specialty.objects.get(id = request.POST['specialty'])
         prescribers.fname = request.POST['fname']
         prescribers.lname = request.POST['lname']
         prescribers.gender = request.POST['gender']
-        prescribers.state = request.POST['state']
+        prescribers.state = state
         prescribers.opioidprescriber = request.POST['opioidprescriber']
         prescribers.credential = request.POST['credential']
-        prescribers.specialty = request.POST['specialty']
+        prescribers.specialty = specialty
 
         prescribers.save()
 
-    return prescribersPageView(request)
+    return prescriberInfoPageView(request, prescriber_id)
 
 def FAQPageView(request) :
     return render(request, 'Opioids/FAQ.html')

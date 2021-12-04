@@ -5,7 +5,7 @@
     <h1 style="text-align: center;">{{prescribers.fname}} {{prescribers.lname}}'s Information</h1>
     <br>
     <div class="custom-form">
-        <form method="post" name="form" action="{% url 'editPrescriber'%}">
+        <form method="post" name="form" action="{% url 'updatePrescriber'%}">
             {% csrf_token %}
             
             <div class="form-group">
@@ -24,26 +24,34 @@
                     <fieldset style="width:80px;">
                     <legend style="font-size:18px;">Gender</legend>
                         <label class="custom-control-label" for="male">Male</label>
-                        <input class="custom-control-input" type="radio" id="male" value="M" name="gender" {% if prescribers.gender == "M" %} checked {% endif%}>
+                        <input class="form-check-input" type="radio" id="male" value="M" name="gender" {% if prescribers.gender == "M" %} checked {% endif%}>
                         <label class="custom-control-label" for="female">Female</label>
-                        <input class="custom-control-input" type="radio" id="female" value="F" name="gender" {% if prescribers.gender == "F" %} checked {% endif%}>
+                        <input class="form-check-input" type="radio" id="female" value="F" name="gender" {% if prescribers.gender == "F" %} checked {% endif%}>
                     </fieldset>
                     <br>
 
                     <label style="font-size: 18px;" for="state" title="Enter as state abbreviation. i.e CA">Location</label>
-                    <input name="state" class="form-control" type="text" id="state" title="Enter as state abbreviation. i.e CA" maxlength="2" value={{prescribers.state}}>
+                    <select class="form-select" name="state" id="state">
+                        {% for counter in states %}
+                        <option {% if counter.id == prescribers.state.id %} selected {% endif%} value={{counter.id}}>{{counter.state}}</option>
+                        {% endfor %}
+                    </select>
                     <br>
 
-                    <label for="opioidprescriber">Are they an opioid prescriber?</label>
-                    <input name="opioidprescriber" class="custom-control-input" type="checkbox" id="opioidprescriber" name="opioidprescriber" {% if prescribers.isopioidprescriber == True %} checked {% endif %}>
+                    <label class="form-check-label" for="opioidprescriber">Are they an opioid prescriber?</label>
+                    <input name="opioidprescriber" class="form-check-input" type="checkbox" id="opioidprescriber" name="opioidprescriber" {% if prescribers.isopioidprescriber == True %} checked {% endif %}>
                     <br><br>
 
                     <label style="font-size: 18px;" for="credential">Credentials</label>
                     <input name="credential" class="form-control" type="text" id="credential" maxlength="30" value={{prescribers.credential}}>
                     <br>
-
                     <label style="font-size: 18px;" for="specialty">Specialty</label>
-                    <input name="specialty" class="form-control" type="text" id="specialty" maxlength="255" required value={{prescribers.specialty}}>
+                    <select class="form-select" name="specialty" id="specialty">
+                        {% for counter in specialties %}
+                        <option {% if counter.id == prescribers.specialty.id %} selected {% endif%} value={{counter.id}}>{{counter.specialty}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
                     <br>
                 </fieldset>
                 <div style="text-align: center;">
