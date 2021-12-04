@@ -3,19 +3,21 @@
 {% block content %}
 <table class="table table-sm table-dark">
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Gender</th>
-        <th>Credentials</th>
-        <th>Is Opiod Prescriber</th>
-        <th>Location</th>
-        <th>Specialty</th>
-        <th>Info</th>
-        <th>Edit</th>
+        <th style="text-align: center;">Edit</th>
+        <th style="text-align: center;">First Name</th>
+        <th style="text-align: center;">Last Name</th>
+        <th style="text-align: center;">Gender</th>
+        <th style="text-align: center;">Credentials</th>
+        <th style="text-align: center;">Is Opiod Prescriber</th>
+        <th style="text-align: center;">Location</th>
+        <th style="text-align: center;">Specialty</th>
+        <th style="text-align: center;">Info</th>
+
     </tr>
     {% for counter in prescribers %}
     <tr>
         <td hidden>{{counter.id}}</td>
+        <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'editPrescriber' prescriber_id=counter.id %}">Edit</a>
         <td>{{counter.fname}}</td>
         <td>{{counter.lname}}</td>
         <td>{{counter.gender}}</td>
@@ -28,7 +30,7 @@
         <td>{{counter.state}}</td>
         <td>{{counter.specialty}}</td>
         <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=counter.id %}">Prescriber Info</a>
-        <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'editPrescriber' prescriber_id=counter.id %}">Edit</a>
+
     </tr>
     {%endfor%}
 </table>

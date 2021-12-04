@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<p>Tableau</p>
-    <div style="margin: 80px; position: relative;">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 style="text-align: center; color: white;"><b>Bad News and Good News</b></h1>
+    <div style="margin-left: 80px; margin-right: 80px; position: relative;">
         <div class='tableauPlaceholder' id='viz1638578338494' style='position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;'>
             <noscript><a href='#'>
                 <img alt='Predicted Opioid Deaths Through 2024 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;PredictedOpioidDeathsThrough2024&#47;PredictedDeaths&#47;1_rss.png' style='border: none' /></a>
@@ -16,14 +17,20 @@
         <script type='text/javascript'>                    
             var divElement = document.getElementById('viz1638578338494');                    
             var vizElement = divElement.getElementsByTagName('object')[0];                    
-            vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.5)+'px';                    
+            vizElement.style.width='100%';vizElement.style.height='400px';                    
             var scriptElement = document.createElement('script');                    
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
             vizElement.parentNode.insertBefore(scriptElement, vizElement);                
         </script>
         <br><br>
-        <p>Explanation</p>
+        <p style="color: white;">This graph shows our predicted amount of deaths due to opioids through 2024. Using data from the last 15 years from the CDC, we have predicted that Opioid related deaths will increase in  the next three years if measures are not taken to change the current status quo.</p>
+        <p style="color: white;"> 
+            One good sign is that the amount of opioids being prescribed have fallen harshly in the last decade, meaning that the medical field is becoming increasing more responsible
+            with prescribing opioids. However, deaths are still increasing, likely due to the fact that many street drugs are opioids, and certain street drugs like fentanyl are becoming
+            more common. 
+        </p>
         <br><br>
+        <h1 style="text-align: center; color: white;"><b>Worrisome Proportions</b></h1>
         <div class='tableauPlaceholder' id='viz1638578805206' style='position: relative' ><noscript>
             <a href='#'><img alt='Percent Deaths Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;2H&#47;2HKYT8JQB&#47;1_rss.png' style='border: none' /></a>
         </noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
@@ -36,12 +43,19 @@
         <script type='text/javascript'>                    
             var divElement = document.getElementById('viz1638578805206');                    
             var vizElement = divElement.getElementsByTagName('object')[0];                    
-            vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.5)+'px';                    
+            vizElement.style.width='100%';vizElement.style.height='400px';                    
             var scriptElement = document.createElement('script');                    
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
             vizElement.parentNode.insertBefore(scriptElement, vizElement);                
         </script>
         <br><br>
-        <p>Explanation</p>
+        <p style="color: white;">
+            Pictured above, out of all the accidental deaths in each state, is what percent of those were caused by opioids. Utah attributes the highest
+            percent of their accidental to opioids.
+        </p>
+        <p style="color: white;"> 
+            Despite having smaller populations, some states have a disproportionately higher percent of their citizens dying from opioids.
+        </p>
     </div>
+
 {% endblock %}
