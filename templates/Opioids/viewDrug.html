@@ -3,21 +3,22 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-4">
+        <div class="col-12">
             <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
                 <div class="card p-4" style="width:100%">
-                    <h2>{{drug.drugname}}</h2>
+                    <h2 style="text-align:center;">{{drug.drugname}}</h2>
                     {% if drug.isopioid == True %} 
-                        <p>Opioid</p>
+                        <h5 style="text-align:center;">This drug is an opioid.</h5>
                     {% else %}
-                        <p>Not an Opioid</p>
+                        <h5 style="text-align:center;">This drug is not an opioid.</h5>
                     {% endif %}
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-12">
             <br>
             <table class="table table-sm table-dark">
+                <h1 style="text-align:center; font-family: var(--bs-body-font-family);">Top 10 Prescribers</h1>
                 <tr>
                     <th><b>Prescriber Name<b></th>
                     <th><b>Specialty<b></th>
@@ -26,7 +27,11 @@
                 </tr>
                 {% for pd in top10 %}
                 <tr>
-                    <td>{{pd.prescriber.fname}} {{pd.prescriber.lname}}</td>
+                    <td>
+                        {% if drug.isopioid == True and pd.prescriber.specialty.weight < 3 %}
+                            <i style="color: red;" class="fas fa-flag"></i> 
+                        {% endif %}
+                        {{pd.prescriber.fname}} {{pd.prescriber.lname}}</td>
                     <td>{{pd.prescriber.specialty}}
                     <td>{{pd.quantity}}</td>
                     <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=pd.prescriber.id %}">Prescriber Info</a></td>
