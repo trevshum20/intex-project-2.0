@@ -5,7 +5,9 @@
     <h1>{{prescribers.fname}} {{prescribers.lname}}'s Information</h1>
     <br>
     <div class="custom-form">
-        <form>
+        <form method="post" name="form" action="{% url 'editPrescriber'%}">
+            {% csrf_token %}
+            
             <div class="form-group">
                 <fieldset>
                 <!-- <legend style="font-size:32px;">Prescriber Info</legend> -->
