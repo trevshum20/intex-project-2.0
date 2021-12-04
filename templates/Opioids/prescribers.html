@@ -20,7 +20,7 @@
     {% for counter in prescribers %}
     <tr>
         <td hidden>{{counter.id}}</td>
-        <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'editPrescriber' prescriber_id=counter.id %}">Edit</a>
+        <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'editPrescriber' prescriber_id=counter.id %}">Edit</a></td>
         <td>{{counter.fname}}</td>
         <td>{{counter.lname}}</td>
         <td>{{counter.gender}}</td>

@@ -16,6 +16,17 @@ def drugsPageView(request) :
 
     return render(request, 'Opioids/drugs.html', context)
 
+def viewDrugPageView(request, drug_id) :
+    drug = Drug.objects.get(id = drug_id)
+    top10 = Prescriber_Drug.objects.filter(drug_id = drug_id).order_by('-quantity')[:10]
+
+    context = {
+        "drug": drug,
+        "top10": top10,
+    }
+
+    return render(request, 'Opioids/viewDrug.html', context)
+
 def prescribersPageView(request) :
     prescriber_list = Prescriber.objects.all()
     page = request.GET.get('page',1)

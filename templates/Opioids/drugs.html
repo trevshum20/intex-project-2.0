@@ -6,6 +6,7 @@
         <tr>
             <th>Drug Name</th>
             <th>Is Opioid?</th>
+            <th>Info</th>
         </tr>
         {% for counter in drugs %}
         <tr>
@@ -15,6 +16,9 @@
             {% else %}
                 <td>No</td>
             {% endif %}
+            
+            <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'viewDrug' drug_id=counter.id %}">View Info</a></td>
+
         </tr>
         {%endfor%}
     </table>

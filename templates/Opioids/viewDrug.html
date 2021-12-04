@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+                <div class="card p-4" style="width:100%">
+                    <h2>{{drug.drugname}}</h2>
+                    {% if drug.isopioid == True %} 
+                        <p>Opioid</p>
+                    {% else %}
+                        <p>Not an Opioid</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <br>
+            <table class="table table-sm table-dark">
+                <tr>
+                    <th><b>Prescriber Name<b></th>
+                    <th><b>Specialty<b></th>
+                    <th><b>Quantity Prescribed<b></th>
+                    <th><b>Prescriber Info<b></th>
+                </tr>
+                {% for pd in top10 %}
+                <tr>
+                    <td>{{pd.prescriber.fname}} {{pd.prescriber.lname}}</td>
+                    <td>{{pd.prescriber.specialty}}
+                    <td>{{pd.quantity}}</td>
+                    <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=pd.prescriber.id %}">Prescriber Info</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        
+    </div>
+    
+{% endblock %}
