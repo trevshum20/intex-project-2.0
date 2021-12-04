@@ -85,6 +85,23 @@ def editPrescriberPageView(request, prescriber_id) :
     }
     return render(request, 'Opioids/editprescriber.html', context)
 
+def updatePrescriberPageView(request) :
+    if request.method == 'POST':
+        prescriber_id = request.POST['prescribers_id']
+        prescribers = Prescriber.objects.get(id = prescriber_id)
+
+        prescribers.fname = request.POST['fname']
+        prescribers.lname = request.POST['lname']
+        prescribers.gender = request.POST['gender']
+        prescribers.state = request.POST['state']
+        prescribers.opioidprescriber = request.POST['opioidprescriber']
+        prescribers.credential = request.POST['credential']
+        prescribers.specialty = request.POST['specialty']
+
+        prescribers.save()
+
+    return prescribersPageView(request)
+
 def FAQPageView(request) :
     return render(request, 'Opioids/FAQ.html')
 
