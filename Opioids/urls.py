@@ -10,6 +10,6 @@ urlpatterns = [
     path("search/", searchPageView, name="search"),
     path('faq/', FAQPageView, name="FAQ"),
     path('tableau/', tableauPageView, name="tableau"),
-    path('update/', updatePrescriberPageView, name="update"),
+    path('update/', updatePrescriberPageView, name="updatePrescriber"),
     path('', indexPageView, name="index"),    
 ]
