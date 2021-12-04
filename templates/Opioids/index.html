@@ -10,11 +10,12 @@
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Learn about the opioid crisis that is devastating communites across America.</h2>
                         <form name="form" method="post" action="{% url 'search' %}">
                             {% csrf_token %}
-                            <div class="input-group">
+                             <div class="input-group">
                                 <label for="searchValue" hidden></label>
                                 <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                 <button type="submit" class="btn btn-outline-primary">search</button>
                             </div>
+
                             <label class="radio-inline radiobuttonsindex">
                                 <input type="radio" value="prescribers" name="optradio" checked>Prescribers
                             </label>
@@ -23,7 +24,7 @@
                             </label>
                             <label class="radio-inline radiobuttonsindex">
                                 <input type="radio" value="opiods" name="optradio">Opioids Only
-                            </label>
+                            </label> 
                         </form>
                     </div>
                 </div>
