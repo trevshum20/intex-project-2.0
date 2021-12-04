@@ -2,7 +2,12 @@
 {% load static %}
 {% block content %}
 
-    <h1 style="text-align: center;">{{prescribers.fname}} {{prescribers.lname}}'s Information</h1>
+    <form method="post" name="form" action="{% url 'deletePrescriber'%}">
+        <div style="position: absolute; right: 30; margin-left: 70px;" >
+        <button class="btn btn-primary" type="submit">Delete Prescriber</button>
+        </div>
+    </form>
+    <h1 style="text-align: center;">{{prescribers.fname}} {{prescribers.lname}}'s Information </h1>
     <br>
     <div class="custom-form">
         <form method="post" name="form" action="{% url 'updatePrescriber'%}">
@@ -58,7 +63,7 @@
                 <button class="btn btn-primary" type="submit">Update</button>
                 </div>
             </div>
-        </form> 
+        </form>
     </div>
 
 {% endblock %}

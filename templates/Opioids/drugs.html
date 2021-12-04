@@ -22,5 +22,21 @@
         </tr>
         {%endfor%}
     </table>
+
+    {% if drugs.has_other_pages %}
+  <ul class="pagination">
+    {% if drugs.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ drugs.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% if drugs.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ drugs.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul> 
+{% endif %}
+
 </div>
 {% endblock %}

@@ -8,7 +8,18 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 def drugsPageView(request) :
-    drugs = Drug.objects.all()
+    # drugs = Drug.objects.all()
+
+    drugs_list = Drug.objects.all()
+    page = request.GET.get('page',1)
+    paginator = Paginator(drugs_list,9)
+
+    try:
+        drugs = paginator.page(page)
+    except PageNotAnInteger:
+        drugs = paginator.page(1)
+    except EmptyPage:
+        drugs = paginator.page(paginator.num_pages)
 
     context = {
         "drugs": drugs,
@@ -30,7 +41,7 @@ def viewDrugPageView(request, drug_id) :
 def prescribersPageView(request) :
     prescriber_list = Prescriber.objects.all()
     page = request.GET.get('page',1)
-    paginator = Paginator(prescriber_list,9)
+    paginator = Paginator(prescriber_list,6)
 
     try:
         prescribers = paginator.page(page)
@@ -164,3 +175,10 @@ def FAQPageView(request) :
 
 def tableauPageView(request) :
     return render(request, 'Opioids/tableau.html')
+
+def deletePrescriberPageView(request) :
+    if request.method == 'POST':
+        prescriber_id = request.POST['prescribers_id']
+        prescribers = Prescriber.objects.get(id = prescriber_id).delete()
+
+    return prescribersPageView(request)
