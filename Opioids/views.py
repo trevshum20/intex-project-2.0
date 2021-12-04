@@ -87,3 +87,6 @@ def editPrescriberPageView(request, prescriber_id) :
 
 def FAQPageView(request) :
     return render(request, 'Opioids/FAQ.html')
+
+def tableauPageView(request) :
+    return render(request, 'Opioids/tableau.html')
