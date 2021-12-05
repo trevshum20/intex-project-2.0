@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import indexPageView, drugsPageView, prescribersPageView, prescriberInfoPageView
 from .views import searchPageView, createPrescriberPageView, editPrescriberPageView, FAQPageView, tableauPageView, updatePrescriberPageView, createNewPrescriberPageView, viewDrugPageView
-from .views import doctorPrescriberPageView
+from .views import doctorPrescriberPageView, deletePrescriberPageView
 urlpatterns = [
     path('delete/', deletePrescriberPageView, name='deletePrescriber'),
     path('edit/<int:prescriber_id>/', editPrescriberPageView, name='editPrescriber'),
