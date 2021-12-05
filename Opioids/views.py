@@ -177,9 +177,19 @@ def createNewPrescriberPageView(request) :
 
 
 def FAQPageView(request) :
-    total = Prescriber_Drug.objects.filter(drug_id__in=[3,84,102,183,185]).aggregate(Sum('quantity'))
+    data = Drug.objects.raw('select pd_drugs.id from pd_drugs where isopioid = true')
+    total = Prescriber_Drug.objects.filter(drug_id__in=data).aggregate(Sum('quantity'))
+
+    #drugs = Drug.objects.get(isopioid = True)
+    #opioids = Prescriber_Drug.objects.filter(drug_id__in=drugs)
+
+
+
+
+   # drugnames = Drug.objects.raw('select pd_drugs.id, drugname from pd_drugs')
     context = {
-        "total" : total.get('quantity__sum')
+        "total" : total.get('quantity__sum'),
+        #"drugnames" : opioids
     }
     return render(request, 'Opioids/FAQ.html', context)
 
