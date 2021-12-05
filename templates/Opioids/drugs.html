@@ -4,9 +4,9 @@
 <div>
     <table class="table table-sm table-dark">
         <tr>
-            <th>Drug Name</th>
-            <th>Is Opioid?</th>
-            <th>Info</th>
+            <th class="col-8"><b>Drug Name<b></th>
+            <th class="col-2"><b>Is Opioid?<b></th>
+            <th class="col-2" style="text-align: center;"><b>Info<b></th>
         </tr>
         {% for counter in drugs %}
         <tr>
@@ -17,10 +17,26 @@
                 <td>No</td>
             {% endif %}
             
-            <td><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'viewDrug' drug_id=counter.id %}">View Info</a></td>
+            <td style="text-align: center;"><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="text-align: center;" href="{% url 'viewDrug' drug_id=counter.id %}">View Info</a></td>
 
         </tr>
         {%endfor%}
     </table>
+
+    {% if drugs.has_other_pages %}
+  <ul class="pagination">
+    {% if drugs.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ drugs.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% if drugs.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ drugs.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul> 
+{% endif %}
+
 </div>
 {% endblock %}

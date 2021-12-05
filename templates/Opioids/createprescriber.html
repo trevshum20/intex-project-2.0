@@ -14,24 +14,24 @@
                     <input type="hidden" value= {{prescribers.id}} name="prescribers_id">
 
                     <label style="font-size: 18px;" for="fname">First Name</label>
-                    <input name="fname" class="form-control" type="text" id="fname" maxlength="30" value = {{prescribers.fname}}>
+                    <input name="fname" required="True" class="form-control" type="text" id="fname" maxlength="30" value = {{prescribers.fname}}>
                     <br>
 
                     <label style="font-size: 18px;" for="lname">Last Name</label>
-                    <input name="lname" class="form-control" type="text" id="lname" maxlength="30" value = {{prescribers.lname}}>
+                    <input name="lname" required="True" class="form-control" type="text" id="lname" maxlength="30" value = {{prescribers.lname}}>
                     <br>
 
                     <fieldset style="width:80px;">
                     <legend style="font-size:18px;">Gender</legend>
                         <label class="custom-control-label" for="male">Male</label>
-                        <input class="form-check-input" type="radio" id="male" value="M" name="gender" {% if prescribers.gender == "M" %} checked {% endif%}>
+                        <input class="form-check-input" required="True" type="radio" id="male" value="M" name="gender" {% if prescribers.gender == "M" %} checked {% endif%}>
                         <label class="custom-control-label" for="female">Female</label>
-                        <input class="form-check-input" type="radio" id="female" value="F" name="gender" {% if prescribers.gender == "F" %} checked {% endif%}>
+                        <input class="form-check-input" required="True" type="radio" id="female" value="F" name="gender" {% if prescribers.gender == "F" %} checked {% endif%}>
                     </fieldset>
                     <br>
 
                     <label style="font-size: 18px;" for="state" title="Enter as state abbreviation. i.e CA">Location</label>
-                    <select class="form-select" name="state" id="state">
+                    <select class="form-select" required="True" name="state" id="state">
                         {% for counter in states %}
                         <option value={{counter.id}}>{{counter.state}}</option>
                         {% endfor %}
@@ -39,14 +39,14 @@
                     <br>
 
                     <label class="form-check-label" for="opioidprescriber">Are they an opioid prescriber?</label>
-                    <input name="opioidprescriber" class="form-check-input" type="checkbox" id="opioidprescriber" name="opioidprescriber" {% if prescribers.isopioidprescriber == True %} checked {% endif %}>
+                    <input name="opioidprescriber" class="form-check-input" type="checkbox" id="opioidprescriber" {% if prescribers.isopioidprescriber == True %} checked {% endif %}>
                     <br><br>
 
                     <label style="font-size: 18px;" for="credential">Credentials</label>
-                    <input name="credential" class="form-control" type="text" id="credential" maxlength="30" value={{prescribers.credential}}>
+                    <input name="credential" title="Enter as an abbreviation, i.e. D.O." required="True" class="form-control" type="text" id="credential" maxlength="30" value={{prescribers.credential}}>
                     <br>
                     <label style="font-size: 18px;" for="specialty">Specialty</label>
-                    <select class="form-select" name="specialty" id="specialty">
+                    <select class="form-select" required="True" name="specialty" id="specialty">
                         {% for counter in specialties %}
                         <option value={{counter.id}}>{{counter.specialty}}</option>
                         {% endfor %}
