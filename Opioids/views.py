@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty
 #from .models import
 # from Opioids.models import Prescriber
-from django.db.models import Q
+from django.db.models import Q, Avg, Count, Min, Sum
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -177,7 +177,11 @@ def createNewPrescriberPageView(request) :
 
 
 def FAQPageView(request) :
-    return render(request, 'Opioids/FAQ.html')
+    total = Prescriber_Drug.objects.filter(drug_id__in=[3,84,102,183,185]).aggregate(Sum('quantity'))
+    context = {
+        "total" : total.get('quantity__sum')
+    }
+    return render(request, 'Opioids/FAQ.html', context)
 
 def tableauPageView(request) :
     return render(request, 'Opioids/tableau.html')
