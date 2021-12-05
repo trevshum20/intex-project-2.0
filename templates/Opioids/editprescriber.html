@@ -6,7 +6,7 @@
         {% csrf_token %}
         <input type="hidden" value= {{prescribers.id}} name="prescribers_id">
         <div style="position: absolute; right: 30; margin-left: 70px;" >
-        <button class="btn btn-primary" type="submit">Delete Prescriber</button>
+        <button onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-primary" type="submit">Delete Prescriber</button>
         </div>
     </form>
     <h1 style="text-align: center;">{{prescribers.fname}} {{prescribers.lname}}'s Information </h1>
@@ -67,5 +67,4 @@
             </div>
         </form>
     </div>
-
 {% endblock %}

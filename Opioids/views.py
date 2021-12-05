@@ -41,7 +41,7 @@ def viewDrugPageView(request, drug_id) :
 def prescribersPageView(request) :
     prescriber_list = Prescriber.objects.all()
     page = request.GET.get('page',1)
-    paginator = Paginator(prescriber_list,6)
+    paginator = Paginator(prescriber_list,8)
 
     try:
         prescribers = paginator.page(page)
