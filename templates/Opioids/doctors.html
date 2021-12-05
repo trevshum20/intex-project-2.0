@@ -26,26 +26,40 @@
 
 
 <main>
+    <!-- Background image -->
+    <div
+            class=" text-center bg-image"
+            style="
+            background-image: url('https://mdbootstrap.com/img/new/slides/041.jpg');
+            height: 400px;
+          "
+    >
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height:100%;">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3" style="font-size: 50px" >Meet Our Consulting Doctors</h1>
+            <br>
+            <h6 class="mb-3">These doctors helped us understand the opioid epidemic, our data,<br>
+              and make assumptions as we built our application.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Background image -->
 
-
-
-
-  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <p style="text-align: center; font-size: 50px;"><b>Meet our Consulting Doctors!</b></p>
-  </div>
 
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
-
+  <br><br>
   <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
         <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-        <img class="bd-placeholder-img rounded-circle" width="140" height="180" src="{% static 'img/ahlstrom.jpeg' %}" alt="..." />
+        <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="{% static 'img/ahlstrom.jpeg' %}" alt="..." />
 
         <h2>Shane Ahlstrom MD</h2>
         <h4>Anesthesiologist</h4>
@@ -54,7 +68,7 @@
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-        <img class="bd-placeholder-img rounded-circle" width="140" height="180" src="{% static 'img/melissa.jpeg' %}" alt="..." />
+        <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="{% static 'img/melissa.jpeg' %}" alt="..." />
 
         <h2>Melissa Wroblewski NP-C</h2>
         <h4>Nurse Practitioner</h4>
@@ -63,7 +77,7 @@
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-        <img class="bd-placeholder-img rounded-circle" width="140" height="180" src="{% static 'img/hess.jpg' %}" alt="..." />
+        <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="{% static 'img/hess.jpg' %}" alt="..." />
 
         <h2>Nathan Hess DO</h2>
         <h4>Anesthesiologist</h4>
@@ -79,7 +93,7 @@
       <div class="row" style="justify-content: center;">
         <div class="col-lg-4">
           <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-          <img class="bd-placeholder-img rounded-circle" width="140" height="180" src="{% static 'img/byron.jpeg' %}" alt="..." />
+          <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="{% static 'img/byron.jpeg' %}" alt="..." />
 
           <h2>Byron Edwards PA-C/Ph. D</h2>
           <h4>Dermatologist</h4>
@@ -88,7 +102,7 @@
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-          <img class="bd-placeholder-img rounded-circle" width="140" height="180" src="{% static 'img/chad.jpeg' %}" alt="..." />
+          <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="{% static 'img/chad.jpeg' %}" alt="..." />
 
           <h2>Chad Edwards DO</h2>
           <h4>Orthopedic Surgeon</h4>
@@ -105,36 +119,38 @@
 
     <div class="row featurette" id="ahlstrom">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2 class="featurette-heading">"Drug companies marketed the overtreatment of pain"<span class="text-muted"></span></h2>
+        <br>
+        <p class="lead">Partial solution: We could have more serious discipline for those who are overprescribing and more in-patient rehabilitation centers.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+      <div class="col-md-5"style="padding-left: 100px;">
+        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> -->
+        <img class="featurette-image img-fluid mx-auto" width="300" height="300" src="{% static 'img/ahlstrom.jpg' %}" alt="..." />
       </div>
     </div>
     <br>
     <hr class="featurette-divider">
     <div class="row featurette" id="melissa">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+        <h2 class="featurette-heading">"The situation is much better now"<span class="text-muted"></span></h2>
+        <br>
+        <p class="lead">There are more rules and regulations. Some pain management clinics avoid opioids all together.</p>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+      <div class="col-md-5 order-md-1" style="padding-left: 100px;">
+        {% comment %} <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> {% endcomment %}
+        <img class="featurette-image img-fluid mx-auto" width="300" height="300" src="{% static 'img/melissa1.jpg' %}" alt="..." />
       </div>
     </div>
     <br>
     <hr class="featurette-divider">
     <div class="row featurette" id ="hess">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2 class="featurette-heading">"Overprescription is becoming less of an issue.<span class="text-muted"> Prescribers are hyper aware"</span></h2>
+        <p class="lead">It appears that the illegal manufacturing and sale of street-drug opioids like fentanyl is a bigger issue.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+      <div class="col-md-5" style="padding-left: 100px; padding-top: 70px;">
+        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> -->
+        <img class="featurette-image img-fluid mx-auto" width="300" height="300" src="{% static 'img/hess.jpg' %}" alt="..." />
       </div>
     </div>
     <br>
@@ -142,12 +158,13 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+        <h3 class="featurette-heading">"People who are struggling with other things in life are more likely to get addicted to opioids;<span class="text-muted"> it gives them a way to deal with life"</span></h3>
+        <p class="lead">
+            It’s helping them with everything else and not just the physical pain.</p>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+      <div class="col-md-5 order-md-1" style="padding-left: 100px; padding-top: 70px;">
+        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> -->
+        <img class="featurette-image img-fluid mx-auto" width="300" height="300" src="{% static 'img/byron1.jpg' %}" alt="..." />
       </div>
     </div>
     <br>
@@ -155,12 +172,12 @@
 
     <div class="row featurette" id="chad">
       <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+        <h2 class="featurette-heading">"Doctors shouldn't really be giving out opioid prescriptions<span class="text-muted"> unless they're pain management certified"</span></h2>
+        <p class="lead">Opioid addictions are a self-progating cycle, like the chicken and the egg. People are addicted because they're in pain, but they might be pain because they're addicted.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+      <div class="col-md-5" style="padding-left: 100px; padding-top: 70px;">
+        {% comment %} <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> {% endcomment %}
+        <img class="featurette-image img-fluid mx-auto" width="300" height="300" src="{% static 'img/chad2.jpg' %}" alt="..." />
       </div>
     </div>
 
