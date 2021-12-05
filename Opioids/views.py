@@ -164,3 +164,6 @@ def FAQPageView(request) :
 
 def tableauPageView(request) :
     return render(request, 'Opioids/tableau.html')
+
+def doctorPrescriberPageView(request):
+    return render(request, 'Opioids/doctors.html')

@@ -2,34 +2,93 @@
 {% load static %}
 {% block content %}
         <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Opioid Crisis</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Learn about the opioid crisis that is devastating communites across America.</h2>
-                        <form name="form" method="post" action="{% url 'search' %}">
-                            {% csrf_token %}
-                             <div class="input-group">
-                                <label for="searchValue" hidden></label>
-                                <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <button type="submit" class="btn btn-outline-primary">search</button>
-                            </div>
-
-                            <label class="radio-inline radiobuttonsindex">
-                                <input type="radio" value="prescribers" name="optradio" checked>Prescribers
-                            </label>
-                            <label class="radio-inline radiobuttonsindex">
-                                <input type="radio" value="drugs" name="optradio">All Drugs
-                            </label>
-                            <label class="radio-inline radiobuttonsindex">
-                                <input type="radio" value="opiods" name="optradio">Opioids Only
-                            </label> 
-                        </form>
+        <main>
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+          
+                  <div class="container">
+                    <div class="carousel-caption text-start">
+                      <h1>Example headline.</h1>
+                      <p>Some representative placeholder content for the first slide of the carousel.</p>
+                      <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
                     </div>
+                  </div>
                 </div>
+                <div class="carousel-item">
+                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+          
+                  <div class="container">
+                    <div class="carousel-caption">
+                      <h1>Another example headline.</h1>
+                      <p>Some representative placeholder content for the second slide of the carousel.</p>
+                      <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+          
+                  <div class="container">
+                    <div class="carousel-caption text-end">
+                      <h1>One more for good measure.</h1>
+                      <p>Some representative placeholder content for the third slide of this carousel.</p>
+                      <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-        </header>
+            
+
+        <div style="margin-left: 100px; margin-right: 100px;" class="text-center">
+            <form name="form" method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                    <div class="input-group">
+                    <label for="searchValue" hidden></label>
+                    <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-outline-primary">search</button>
+                </div>
+
+                <label class="radio-inline radiobuttonsindex">
+                    <input type="radio" value="prescribers" name="optradio" checked>Prescribers
+                </label>
+                <label class="radio-inline radiobuttonsindex">
+                    <input type="radio" value="drugs" name="optradio">All Drugs
+                </label>
+                <label class="radio-inline radiobuttonsindex">
+                    <input type="radio" value="opiods" name="optradio">Opioids Only
+                </label> 
+            </form>
+        </div>
+        <br><br>
+            <!-- Marketing messaging and featurettes
+            ================================================== -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+          
+            <div class="container marketing">
+          
+              
+          
+          
+
+          
+            </div><!-- /.container -->
+
         <!-- About-->
         <section class="about-section text-center" id="about">
             <div class="container px-4 px-lg-5">
@@ -93,49 +152,6 @@
             </div>
         </section>
         <!-- Signup-->
-        <section class="signup-section" id="signup">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Email address input-->
-                            <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
-                            </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3 mt-2 text-white">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Contact-->
         <section class="contact-section bg-black">
             <div class="container px-4 px-lg-5">
