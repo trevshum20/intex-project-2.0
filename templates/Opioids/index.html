@@ -11,35 +11,32 @@
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-          
+                  <img src="{% static 'img/roadmountainpic.png'%}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
                   <div class="container">
                     <div class="carousel-caption text-start">
-                      <h1>OPIOID CRISIS</h1>
-                      <p>Affecting thousands in America.</p>
+                      <h1><b>OPIOID CRISIS<b></h1>
+                      <p>Learn more about the crisis hurting millions in America.</p>
                       <p><a class="btn btn-lg btn-primary" href="{% url 'tableau'%}">More Info</a></p>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-          
+                  <img src="{% static 'img/manholdingheart.jpg'%}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
                   <div class="container">
                     <div class="carousel-caption">
-                      <h1>Another example headline.</h1>
-                      <p>Some representative placeholder content for the second slide of the carousel.</p>
-                        <a class="btn btn-lg btn-primary" href="{% url 'tableau'%}">Learn more</a>
+                      <h1><b>Not junkies, not addicts.<b></h1>
+                      <p>They are people. Moms, husbands, children, friends, neighbors.</p>
+                        <a class="btn btn-lg btn-primary" href="https://www.cdc.gov/rxawareness/stories/index.html" target="_blank">Click here to read their stories.</a>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-          
+                  <img src="{% static 'img/purplepic.jpg'%}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
                   <div class="container">
                     <div class="carousel-caption text-end">
-                      <h1>One more for good measure.</h1>
-                      <p>Some representative placeholder content for the third slide of this carousel.</p>
-                      <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                      <h1><b>Don't take our word for it.<b></h1>
+                      <p>See what the professionals have to say.</p>
+                      <p><a class="btn btn-lg btn-primary" href="{% url 'doctors'%}">View</a></p>
                     </div>
                   </div>
                 </div>
@@ -61,7 +58,7 @@
                     <div class="input-group">
                     <label for="searchValue" hidden></label>
                     <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <button type="submit" class="btn btn-outline-primary">search</button>
+                    <button type="submit" class="btn btn-outline-primary" style="background-color: black;">search</button>
                 </div>
 
                 <label class="radio-inline radiobuttonsindex">
