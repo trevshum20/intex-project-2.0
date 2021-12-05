@@ -8,7 +8,18 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 def drugsPageView(request) :
-    drugs = Drug.objects.all()
+    # drugs = Drug.objects.all()
+
+    drugs_list = Drug.objects.all()
+    page = request.GET.get('page',1)
+    paginator = Paginator(drugs_list,9)
+
+    try:
+        drugs = paginator.page(page)
+    except PageNotAnInteger:
+        drugs = paginator.page(1)
+    except EmptyPage:
+        drugs = paginator.page(paginator.num_pages)
 
     context = {
         "drugs": drugs,
@@ -30,7 +41,7 @@ def viewDrugPageView(request, drug_id) :
 def prescribersPageView(request) :
     prescriber_list = Prescriber.objects.all()
     page = request.GET.get('page',1)
-    paginator = Paginator(prescriber_list,9)
+    paginator = Paginator(prescriber_list,8)
 
     try:
         prescribers = paginator.page(page)
@@ -120,8 +131,11 @@ def updatePrescriberPageView(request) :
         prescribers.gender = request.POST['gender']
         prescribers.state = state
         canPrescribeOpioids = False
-        if request.POST['opioidprescriber'] == "on" :
-            canPrescribeOpioids = True
+        try:
+            if request.POST['opioidprescriber'] == "on" :
+                canPrescribeOpioids = True
+        except: 
+            canPrescribeOpioids = False
         print(canPrescribeOpioids)
         prescribers.isopioidprescriber = canPrescribeOpioids
         prescribers.credential = request.POST['credential']
@@ -142,8 +156,11 @@ def createNewPrescriberPageView(request) :
         prescriber.state = state
 
         canPrescribeOpioids = False
-        if request.POST['opioidprescriber'] == "on" :
-            canPrescribeOpioids = True
+        try:
+            if request.POST['opioidprescriber'] == "on" :
+                canPrescribeOpioids = True
+        except: 
+            canPrescribeOpioids = False
         print(canPrescribeOpioids)
         prescriber.isopioidprescriber = canPrescribeOpioids
         # If it's not on, set it to false.
@@ -168,3 +185,13 @@ def FAQPageView(request) :
 
 def tableauPageView(request) :
     return render(request, 'Opioids/tableau.html')
+
+def doctorPrescriberPageView(request):
+    return render(request, 'Opioids/doctors.html')
+
+def deletePrescriberPageView(request) :
+    if request.method == 'POST':
+        prescriber_id = request.POST['prescribers_id']
+        prescriberdelete = Prescriber.objects.filter(id = prescriber_id)
+        prescriberdelete.delete()
+    return prescribersPageView(request)

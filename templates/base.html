@@ -16,6 +16,8 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <link href="{% static 'css/customstyles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/carousel.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/carousel.rtl.css' %}" rel="stylesheet" />
     </head>
     <body style="background-color:grey;" >
         <body id="page-top">
@@ -32,11 +34,12 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'prescribers'%}">Prescribers</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'tableau'%}">More Info</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'FAQ'%}">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'doctors'%}">Doctors</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div style="margin-top: 88px;">
+        <div style="margin-top: 60px;">
             {% block content %}
             {% endblock %}
         </div>
