@@ -3,6 +3,8 @@
 {% block content %}
 
     <form method="post" name="form" action="{% url 'deletePrescriber'%}">
+        {% csrf_token %}
+        <input type="hidden" value= {{prescribers.id}} name="prescribers_id">
         <div style="position: absolute; right: 30; margin-left: 70px;" >
         <button class="btn btn-primary" type="submit">Delete Prescriber</button>
         </div>

@@ -131,8 +131,11 @@ def updatePrescriberPageView(request) :
         prescribers.gender = request.POST['gender']
         prescribers.state = state
         canPrescribeOpioids = False
-        if request.POST['opioidprescriber'] == "on" :
-            canPrescribeOpioids = True
+        try:
+            if request.POST['opioidprescriber'] == "on" :
+                canPrescribeOpioids = True
+        except: 
+            canPrescribeOpioids = False
         print(canPrescribeOpioids)
         prescribers.isopioidprescriber = canPrescribeOpioids
         prescribers.credential = request.POST['credential']
@@ -153,8 +156,11 @@ def createNewPrescriberPageView(request) :
         prescriber.state = state
 
         canPrescribeOpioids = False
-        if request.POST['opioidprescriber'] == "on" :
-            canPrescribeOpioids = True
+        try:
+            if request.POST['opioidprescriber'] == "on" :
+                canPrescribeOpioids = True
+        except: 
+            canPrescribeOpioids = False
         print(canPrescribeOpioids)
         prescriber.isopioidprescriber = canPrescribeOpioids
         # If it's not on, set it to false.
@@ -179,6 +185,6 @@ def tableauPageView(request) :
 def deletePrescriberPageView(request) :
     if request.method == 'POST':
         prescriber_id = request.POST['prescribers_id']
-        prescribers = Prescriber.objects.get(id = prescriber_id).delete()
-
+        prescriberdelete = Prescriber.objects.filter(id = prescriber_id)
+        prescriberdelete.delete()
     return prescribersPageView(request)
