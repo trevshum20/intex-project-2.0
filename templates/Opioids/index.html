@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
         <!-- Masthead-->
-        <main>
+
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -14,7 +14,7 @@
                   <img src="{% static 'img/roadmountainpic.png'%}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
                   <div class="container">
                     <div class="carousel-caption text-start">
-                      <h1><b>OPIOID CRISIS<b></h1>
+                      <h1><b>OPIOID CRISIS</b></h1>
                       <p>Learn more about the crisis hurting millions in America.</p>
                       <p><a class="btn btn-lg btn-primary" href="{% url 'tableau'%}">More Info</a></p>
                     </div>
@@ -24,9 +24,9 @@
                   <img src="{% static 'img/manholdingheart.jpg'%}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
                   <div class="container">
                     <div class="carousel-caption">
-                      <h1><b>Not junkies, not addicts.<b></h1>
+                      <h1><b>Not junkies, not addicts.</b></h1>
                       <p>They are people. Moms, husbands, children, friends, neighbors.</p>
-                        <a class="btn btn-lg btn-primary" href="https://www.cdc.gov/rxawareness/stories/index.html" target="_blank">Click here to read their stories.</a>
+                        <a class="btn btn-lg btn-primary" href="https://www.cdc.gov/rxawareness/stories/index.html" target="_blank">Click here to read their stories</a>
                     </div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
                   <img src="{% static 'img/purplepic.jpg'%}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
                   <div class="container">
                     <div class="carousel-caption text-end">
-                      <h1><b>Don't take our word for it.<b></h1>
+                      <h1><b>Don't take our word for it.</b></h1>
                       <p>See what the professionals have to say.</p>
                       <p><a class="btn btn-lg btn-primary" href="{% url 'doctors'%}">View</a></p>
                     </div>
@@ -91,11 +91,9 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
+                        <h2 class="text-white mb-4">Opoid Overdose Crisis</h2>
                         <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
+                            The latest statistics indicate that the total yearly overdose deaths due to opioids reached a new high of 70,237 in 2017. Two years later, in 2019, there were still almost 50,000 people who died from opioid-involved overdoses in the United States.
                         </p>
                     </div>
                 </div>
@@ -112,7 +110,7 @@
                         <div class="featured-text text-center text-lg-left">
                             <h4>Real Stories</h4>
                             The opioid crisis is devastating communities across America. <a href="https://www.cdc.gov/rxawareness/stories/index.html" target="_blank">Click here</a> to read how this crisis is affecting real people.
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                            <p class="text-black-50 mb-0">The addiction to and misuse of opioids is a serious national crisis that affects not only public health but social and economic welfare as well.</p>
                         </div>
                     </div>
                 </div>
@@ -122,9 +120,13 @@
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Misty</h4>
-                                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                                <div class="project-text w-100 my-auto text-center text-lg-left p-1">
+                                    <h4 class="text-white"><b>Statistics<b></h4><br>
+                                    <ul>
+                                        <li class="mb-2 text-white-50">Roughly 21 to 29 percent of patients who are prescribed opioids for chronic pain misuse them.</li>
+                                        <li class="mb-2 text-white-50">Between 8 and 12 percent of people using an opioid for chronic pain develop an opioid use disorder.</li>
+                                        <li class="mb-2 text-white-50">Around 4 to 6 percent of people who misuse prescription opioids transition to heroin.</li>
+                                    </ul>
                                     <hr class="d-none d-lg-block mb-0 ms-0" />
                                 </div>
                             </div>
@@ -137,9 +139,12 @@
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Mountains</h4>
-                                    <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                                <div class="project-text w-100 my-auto text-center text-lg-right p-1">
+                                    <h4 class="text-white">3 Ways to Combat the Opioid Crisis:</h4>
+                                    <ul>
+                                        <li class="mb-2 text-white-50">Strengthening our understanding of the epidemic through better public health surveillance.</li>
+                                        <li class="mb-2 text-white-50">Providing support for cutting-edge research on pain and addiction.</li>
+                                        <li class="mb-2 text-white-50">Advancing better practices for pain management.</li>
                                     <hr class="d-none d-lg-block mb-0 me-0" />
                                 </div>
                             </div>
