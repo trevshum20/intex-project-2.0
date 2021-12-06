@@ -4,6 +4,9 @@ from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty
 # from Opioids.models import Prescriber
 from django.db.models import Q, Avg, Count, Min, Sum
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import json
+# from urllib import requests
+import requests
 
 # Create your views here.
 
@@ -205,3 +208,80 @@ def deletePrescriberPageView(request) :
         prescriberdelete = Prescriber.objects.filter(id = prescriber_id)
         prescriberdelete.delete()
     return prescribersPageView(request)
+
+def mlPageView(request):
+    specialties = Specialty.objects.all()
+    states = pd_statedata.objects.all()
+
+    context = {
+        "specialties": specialties,
+        "states": states
+    }
+
+    return render(request, 'Opioids/ml.html', context)
+
+def mlResult(request):
+    if request.method == 'POST':
+        state = request.POST['state']
+        specialty = request.POST['specialty']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        gender = request.POST['gender']
+
+        canPrescribeOpioids = False
+        try:
+            if request.POST['opioidprescriber'] == "on" :
+                canPrescribeOpioids = "TRUE"
+        except: 
+            canPrescribeOpioids = "FALSE"
+
+        # import requests
+
+
+        url = "https://ussouthcentral.services.azureml.net/workspaces/23e46f91ecd045f4a93e030afdde5eab/services/c972d55920ab47509c96ccca34b544ad/execute?api-version=2.0&details=true"
+
+        payload = json.dumps({
+        "Inputs": {
+            "input1": {
+            "ColumnNames": [
+                "Gender",
+                "State",
+                "Specialty",
+                "IsOpioidPrescriber"
+            ],
+            "Values": [
+                [
+                gender,
+                state,
+                specialty,
+                canPrescribeOpioids
+                ]
+            ]
+            }
+        },
+        "GlobalParameters": {}
+        })
+        headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer AojchwOJyA3Ie0lGxmSLu9Sduy/xTdSjxyT5pN1Q77rRLh6cfcTBc7DbYaWwI6wy2GOG2f3jV1Tgj6GbiaWv3A=='
+        }
+
+        #response = requests.request("POST", url, headers=headers, data=payload)
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        json_data = json.loads(response.text)
+        prediction = round(float(json_data["Results"]['output1']['value']['Values'][0][0]))
+
+        context = {
+            "prediction" : prediction,
+            "fname" : fname,
+            "lname" : lname,
+        }
+
+        return mlResultPageView(request, context)
+        
+
+    return render(request, 'Opioids/mlresult.html')
+
+def mlResultPageView(request, context) :
+    return render(request, 'Opioids/mlresult.html', context)
