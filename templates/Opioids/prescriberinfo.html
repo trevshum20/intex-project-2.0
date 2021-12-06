@@ -33,7 +33,11 @@
             </div>
         </div>
         <div class="col-8">
-            <h1>{{prescribers.fname}}'s Prescriptions</h1>
+            <br>
+            <h1 style="color: white;">{{prescribers.fname}}'s Prescriptions</h1>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'rec' prescriber_id=prescribers.id gender=prescribers.gender state=prescribers.state specialty=prescribers.specialty isopioidprescriber=prescribers.isopioidprescriber fname=prescribers.fname lname=prescribers.lname %}">View Recommended<br> Drug Prescriptions<br><h6 style="font-size: 8px;">(Takes 15 seconds)</h6></a>
+            <br>
+            <br>
             <table class="table table-sm table-dark">
                 <tr>
                     <th>Drug Name</th>

@@ -227,15 +227,9 @@ def mlResult(request):
         fname = request.POST['fname']
         lname = request.POST['lname']
         gender = request.POST['gender']
+        isopioidprescriber = request.POST['isopioidprescriber']
 
-        canPrescribeOpioids = False
-        try:
-            if request.POST['opioidprescriber'] == "on" :
-                canPrescribeOpioids = "TRUE"
-        except: 
-            canPrescribeOpioids = "FALSE"
 
-        # import requests
 
 
         url = "https://ussouthcentral.services.azureml.net/workspaces/23e46f91ecd045f4a93e030afdde5eab/services/c972d55920ab47509c96ccca34b544ad/execute?api-version=2.0&details=true"
@@ -254,7 +248,7 @@ def mlResult(request):
                 gender,
                 state,
                 specialty,
-                canPrescribeOpioids
+                isopioidprescriber,
                 ]
             ]
             }
@@ -285,3 +279,105 @@ def mlResult(request):
 
 def mlResultPageView(request, context) :
     return render(request, 'Opioids/mlresult.html', context)
+
+def rec(request, prescriber_id, gender, state, specialty, isopioidprescriber, fname, lname):
+
+    prescriber_id = prescriber_id
+    gender = gender
+    state = state
+    specialty = specialty
+    isopioidprescriber = isopioidprescriber
+    fname = fname
+    lname = lname
+    
+
+
+    url = "http://f544458e-008c-411e-8e20-2c359d80f42d.eastus2.azurecontainer.io/score"
+
+    payload = json.dumps({
+    "Inputs": {
+        "WebServiceInput2": [
+        {
+            "drugname": "ABILIFY",
+            "isopioid": False,
+            "avg": 7
+        },
+        {
+            "drugname": "ACETAMINOPHEN.CODEINE",
+            "isopioid": True,
+            "avg": 6
+        },
+        {
+            "drugname": "ACYCLOVIR",
+            "isopioid": False,
+            "avg": 2
+        }
+        ],
+        "WebServiceInput3": [
+        {
+            "prescriber_id": 1992883235,
+            "drugname": "LANTUS.SOLOSTAR",
+            "quantity": 49
+        },
+        {
+            "prescriber_id": 1942270848,
+            "drugname": "LANTUS.SOLOSTAR",
+            "quantity": 47
+        },
+        {
+            "prescriber_id": 1891750840,
+            "drugname": "LANTUS.SOLOSTAR",
+            "quantity": 15
+        }
+        ],
+        "WebServiceInput1": [
+        {
+            "id": prescriber_id,
+            "gender": gender,
+            "state_id": state,
+            "specialty": specialty,
+            "isopioidprescriber": isopioidprescriber,
+        },
+        ]
+    },
+    "GlobalParameters": {}
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer Z5D4bus96cKMXYbVlqRv8Bdd1Ock2MBT'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    json_data = json.loads(response.text)
+    drugRecs = []
+    for results in json_data :
+        for output in json_data[results] :
+            for recomendation in json_data[results][output][0]:
+                drugRecs.append(( json_data[results][output][0][recomendation]))
+
+    context = {
+        "drugRecs" : drugRecs,
+        "fname" : fname,
+        "lname" : lname,
+        "prescriber_id" : prescriber_id,
+    }
+    return recResult(request, context)  
+
+def recResult(request, context) :
+    return render(request, 'Opioids/recresults.html', context)
+
+
+
+
+
+
+    # context = {
+    #     "prescriber_id" : prescriber_id,
+    #     "state" : state,
+    #     "specialty" : specialty,
+    #     "fname" : fname,
+    #     "lname" : lname,
+    #     "gender": gender,
+    #     "isopioidprescriber" : isopioidprescriber,
+    # }

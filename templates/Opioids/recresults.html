@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'prescriberInfo' prescriber_id=prescriber_id %}">Return to <br>Prescriber Info</a>
+<div
+
+    class=" text-center bg-image"
+    <img src=""style="background-image: url('{% static 'img/GrandTetons.jpg' %}'); height: 700px;"></img>
+    
+    <div style=" height:100%;">
+        
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-3" style="font-size: 50px">Recommender Results:</h1>
+                <br>
+                
+                <h4 class="mb-3">{{fname}} {{ lname}} should prescribe:</h4>
+                <br>
+
+                {% for i in drugRecs %}
+                    
+                    <h6>{{i}}</h6><br>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
