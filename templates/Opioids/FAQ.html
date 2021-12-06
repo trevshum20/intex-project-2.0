@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div
+    class=" text-center bg-image"
+    <img src=""style="background-image: url('{% static 'img/sunset.jpg' %}'); height: 400px;"></img>
+    
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height:100%;">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-white">
+                <h1 class="mb-3" style="font-size: 50px">Frequently Asked Questions</h1>
+                <br>
+                <h6 class="mb-3"></h6>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="accordion" id="accordionExample">
     <div class="accordion-item">
-      <br>
-      <h2>Frequently Asked Questions</h2>
-      <br>
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             How many opioid drugs have been prescribed?
