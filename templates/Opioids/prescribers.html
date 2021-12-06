@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div style="margin-left: 50px;">
-  <td><a class="center; btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'createPrescriber' %}">Add Prescriber</a>
+<div style="margin-left: 50px; margin-top:50px; margin-bottom:10px;">
+  <td><a class="center; btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'createPrescriber' %} " >Add Prescriber</a>
 </div>
 <table class="table table-sm table-dark">
     <tr>
-        <th style="text-align: center;">Edit/Delete</th>
-        <th style="text-align: center;">First Name</th>
-        <th style="text-align: center;">Last Name</th>
-        <th style="text-align: center;">Gender</th>
-        <th style="text-align: center;">Credentials</th>
-        <th style="text-align: center;">Is Opiod Prescriber</th>
-        <th style="text-align: center;">Location</th>
-        <th style="text-align: center;">Specialty</th>
-        <th style="text-align: center;">Info</th>
+        <th style="text-align: left;">Edit/Delete</th>
+        <th style="text-align: left;">Last Name</th>
+        <th style="text-align: left;">First Name</th>
+        <th style="text-align: left;">Gender</th>
+        <th style="text-align: left;">Credentials</th>
+        <th style="text-align: left;">Is Opiod Prescriber</th>
+        <th style="text-align: left;">Location</th>
+        <th style="text-align: left;">Specialty</th>
+        <th style="text-align: left;">Info</th>
 
     </tr>
     {% for counter in prescribers %}
