@@ -227,7 +227,7 @@ def mlResult(request):
         fname = request.POST['fname']
         lname = request.POST['lname']
         gender = request.POST['gender']
-        isopioidprescriber = request.POST['isopioidprescriber']
+        isopioidprescriber = request.POST['opioidprescriber']
 
 
 
@@ -245,10 +245,10 @@ def mlResult(request):
             ],
             "Values": [
                 [
-                gender,
-                state,
-                specialty,
-                isopioidprescriber,
+                "\""+gender+"\"",
+                "\""+state+"\"",
+                "\""+specialty+"\"",
+                "\""+isopioidprescriber+"\"",
                 ]
             ]
             }
@@ -262,7 +262,7 @@ def mlResult(request):
 
         #response = requests.request("POST", url, headers=headers, data=payload)
         response = requests.request("POST", url, headers=headers, data=payload)
-
+        print(response.text)
         json_data = json.loads(response.text)
         prediction = round(float(json_data["Results"]['output1']['value']['Values'][0][0]))
 
