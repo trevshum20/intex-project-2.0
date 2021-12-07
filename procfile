@@ -1,0 +1,1 @@
+web: INTEX-PROJECT-2.0.gunicorn .wsgi 
