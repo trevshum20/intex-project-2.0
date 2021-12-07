@@ -20,5 +20,5 @@ urlpatterns = [
     path('mlresult/', mlResult, name="mlresult"),
     path('rec/<int:prescriber_id>/<str:gender>/<str:state>/<str:specialty>/<str:isopioidprescriber>/<str:fname>/<str:lname>/', rec, name="rec"),
     path('recresult/', recResult, name="recresult"),
-    path('', indexPageView, name="index"),    
+    path('', indexPageView, name="index"),
 ]

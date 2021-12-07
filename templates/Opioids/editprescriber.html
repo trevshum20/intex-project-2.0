@@ -9,7 +9,7 @@
         <button onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-primary" type="submit">Delete Prescriber</button>
         </div>
     </form>
-    <h1 style="text-align: center;">{{prescribers.fname}} {{prescribers.lname}}'s Information </h1>
+    <h1 style="text-align: center; color: white; padding-top: 15px;">{{prescribers.fname}} {{prescribers.lname}}'s Information </h1>
     <br>
     <div class="custom-form">
         <form method="post" name="form" action="{% url 'updatePrescriber'%}">

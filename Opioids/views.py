@@ -62,11 +62,14 @@ def prescribersPageView(request) :
 def prescriberInfoPageView(request, prescriber_id) :
     prescribers = Prescriber.objects.get(id = prescriber_id)
     prescriber_drug = Prescriber_Drug.objects.filter(prescriber = prescriber_id)
+
+
     print(prescriber_drug)
 
     context = {
         "prescribers": prescribers,
-        "prescriber_drug": prescriber_drug
+        "prescriber_drug": prescriber_drug,
+
     }
     return render(request, 'Opioids/prescriberinfo.html', context)
 
@@ -74,28 +77,71 @@ def indexPageView(request) :
     return render(request, 'Opioids/index.html')
 
 def searchPageView(request) :
+    prescriber_list = Prescriber.objects.all()
+    page = request.GET.get('page',1)
+    paginator = Paginator(prescriber_list,7)
+
+    try:
+        prescribers = paginator.page(page)
+    except PageNotAnInteger:
+        prescribers = paginator.page(1)
+    except EmptyPage:
+        prescribers = paginator.page(paginator.num_pages)
     if(request.method == 'POST'):
-        searchTerm = request.POST['searchValue'] 
+        searchTerm = request.POST['searchValue']
         # This is getting the value of whatever is in the post form
         option = request.POST['optradio']
+        # precriber
         if option == "prescribers" :
+            
             data = Prescriber.objects.filter(Q(fname__icontains=searchTerm) | Q(lname__icontains=searchTerm))
             context = {
                 "prescribers" : data,
             }
             return render(request, 'Opioids/prescribers.html', context)
+        #drugs all
         elif option == "drugs" :
             data = Drug.objects.filter(drugname__icontains=searchTerm)
             context = {
                 "drugs" : data,
             }
             return render(request, 'Opioids/drugs.html', context)
-        else: 
+        # drugs opioids
+        elif option == "opioids" :
             data = Drug.objects.filter(drugname__icontains=searchTerm, isopioid = True)
             context = {
                 "drugs" : data,
             }
             return render(request, 'Opioids/drugs.html', context)
+        # gender
+        elif option == "gender" :
+            
+            data = Prescriber.objects.filter(gender__iexact=searchTerm)[:30]
+            context = {
+                "prescribers" : data,
+            }
+            return render(request, 'Opioids/prescribers.html', context)
+        # credentials
+        elif option == "credential" :
+            data = Prescriber.objects.filter(credential__icontains=searchTerm)[:30]
+            context = {
+                "prescribers" : data,
+            }
+            return render(request, 'Opioids/prescribers.html', context)
+        #location
+        elif option == "location" :
+            data = Prescriber.objects.filter(state__stateabbrev__icontains=searchTerm)[:30]
+            context = {
+                "prescribers" : data,
+            }
+            return render(request, 'Opioids/prescribers.html', context)
+        #specialty
+        else :
+            data = Prescriber.objects.filter(specialty__specialty__icontains=searchTerm)[:30]
+            context = {
+                "prescribers" : data,
+            }
+            return render(request, 'Opioids/prescribers.html', context)
     else:
         return render(request, 'Opioids/index.html')
 

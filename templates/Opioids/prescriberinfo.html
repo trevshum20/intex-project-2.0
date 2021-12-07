@@ -6,9 +6,9 @@
         <div class="col-4">
             <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
                 <div class="card p-4">
-                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <img class="rounded-circle z-depth-2" src="https://marriott.byu.edu/msmadmin/securefile/empphoto?pid=29146" height="100" width="100" /> <span class="name mt-3">{{prescribers.fname}} {{prescribers.lname}} {{prescribers.credential}}</span>
+                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <img class="rounded-circle z-depth-2" src="{% static 'img/holder.jpg' %}" height="100" width="100" /> <span class="name mt-3">{{prescribers.fname}} {{prescribers.lname}} {{prescribers.credential}}</span>
                         
-                        <div class=" d-flex mt-2"> <a href="{% url 'editPrescriber' prescriber_id=prescribers.id %}" class="btn btn-dark">Edit Profile</a> </div>
+                        <div class=" d-flex mt-2"> <a href="{% url 'editPrescriber' prescriber_id=prescribers.id %}" class="btn btn-primary">Edit Profile</a> </div>
                         <div class="text mt-3">Gender: {{prescribers.gender}}</div>
                         <div class="text mt-3">Specialty: {{prescribers.specialty}}</div>
                         <div class="text mt-3">State: {{prescribers.state.state}}</div>
@@ -35,7 +35,7 @@
         <div class="col-8">
             <br>
             <h1 style="color: white;">{{prescribers.fname}}'s Prescriptions</h1>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'rec' prescriber_id=prescribers.id gender=prescribers.gender state=prescribers.state specialty=prescribers.specialty isopioidprescriber=prescribers.isopioidprescriber fname=prescribers.fname lname=prescribers.lname %}">View Recommended<br> Drug Prescriptions<br><h6 style="font-size: 8px;">(Takes 15 seconds)</h6></a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'rec' prescriber_id=prescribers.id gender=prescribers.gender state=prescribers.state.stateabbrev specialty=prescribers.specialty.specialty isopioidprescriber=prescribers.isopioidprescriber fname=prescribers.fname lname=prescribers.lname %}">View Recommended<br> Drug Prescriptions<br><h6 style="font-size: 8px;">(Takes 30 seconds)</h6></a>
             <br>
             <br>
             <table class="table table-sm table-dark">

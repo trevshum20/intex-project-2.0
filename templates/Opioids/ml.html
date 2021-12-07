@@ -2,9 +2,7 @@
 {% load static %}
 {% block content %}
 
-<h1 style="text-align: center; color: white;">Prescriptions Predictor</h1>
-<br>
-<h5 style="text-align: center; color: white;">Enter the following information for a given doctor, and we will predict how many prescriptions they will write in a year using machine learning!</h5>
+<h1 style="text-align: center; color: white; padding-top: 15px;">Prescriptions Predictor</h1>
 <br>
     <div class="custom-form">
         <form method="post" name="form" action="{% url 'mlresult'%}">
@@ -12,6 +10,7 @@
             
             <div class="form-group">
                 <fieldset>
+                    <h5 style="text-align: left;">Enter the following information for a given doctor, and we will predict how many prescriptions they will write in a year using machine learning!</h5>
                 <!-- <legend style="font-size:32px;">Prescriber Info</legend> -->
                 <label style="font-size: 18px;" for="fname">First Name</label>
                 <input name="fname" required="True" class="form-control" type="text" id="fname" maxlength="30" value = {{prescribers.fname}}>
