@@ -227,8 +227,14 @@ def mlResult(request):
         fname = request.POST['fname']
         lname = request.POST['lname']
         gender = request.POST['gender']
-        isopioidprescriber = request.POST['opioidprescriber']
 
+
+        canPrescribeOpioids = False
+        try:
+            if request.POST['opioidprescriber'] == "on" :
+                canPrescribeOpioids = True
+        except: 
+            canPrescribeOpioids = False
 
 
 
@@ -245,10 +251,10 @@ def mlResult(request):
             ],
             "Values": [
                 [
-                "\""+gender+"\"",
-                "\""+state+"\"",
-                "\""+specialty+"\"",
-                "\""+isopioidprescriber+"\"",
+                gender,
+                state,
+                specialty,
+                canPrescribeOpioids,
                 ]
             ]
             }
@@ -281,16 +287,6 @@ def mlResultPageView(request, context) :
     return render(request, 'Opioids/mlresult.html', context)
 
 def rec(request, prescriber_id, gender, state, specialty, isopioidprescriber, fname, lname):
-
-    prescriber_id = prescriber_id
-    gender = gender
-    state = state
-    specialty = specialty
-    isopioidprescriber = isopioidprescriber
-    fname = fname
-    lname = lname
-    
-
 
     url = "http://f544458e-008c-411e-8e20-2c359d80f42d.eastus2.azurecontainer.io/score"
 
