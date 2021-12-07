@@ -1,1 +1,1 @@
-web: intex-project-2.0.gunicorn .wsgi 
+web: gunicorn Intex.wsgi 
