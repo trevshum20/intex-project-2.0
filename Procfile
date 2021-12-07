@@ -1,1 +1,1 @@
-web: gunicorn Intex.wsg 
+web: gunicorn intex-project-2.0.wsg 
