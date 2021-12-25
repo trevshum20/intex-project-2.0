@@ -49,12 +49,12 @@
                     <input name="opioidprescriber" class="form-check-input" type="checkbox" id="opioidprescriber" name="opioidprescriber" {% if prescribers.isopioidprescriber == True %} checked {% endif %}>
                     <br><br>
 
-                    {% comment %} <label style="font-size: 18px;" for="credential">Credentials</label>
-                    <input name="credential" class="form-control" type="text" id="credential" maxlength="30" value={{prescribers.credential}}>
+                    <label style="font-size: 18px;" for="credential">Credentials</label>
+                    {% comment %} <input name="credential" class="form-control" type="text" id="credential" maxlength="30" value={{prescribers.credential}}>
                     <br> {% endcomment %}
                     <select class="form-select" required="True" name="credential" id="credential">
                         {% for counter in credentials %}
-                        <option value={{counter.id}}>{{counter.cred}}</option>
+                        <option {% if counter.cred == prescribers.credential %} selected {% endif%} value={{counter.id}}>{{counter.cred}}</option>
                         {% endfor %}
                     </select>
                     <label style="font-size: 18px;" for="specialty">Specialty</label>
