@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
+
 import django_heroku
 
 
@@ -90,9 +90,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'opioid',
-        'USER': 'section3group10intex',
-        'PASSWORD': 'BYUintex2021',
-        'HOST': 'byuintex2021.postgres.database.azure.com',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
     }
 }
 # db_from_env = dj_database_url.config(conn_max_age=600)

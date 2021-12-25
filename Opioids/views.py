@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty
+from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty, Credentialz
 #from .models import
 # from Opioids.models import Prescriber
 from django.db.models import Q, Avg, Count, Min, Sum
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
+import operator
 # from urllib import requests
 import requests
 
@@ -148,10 +149,12 @@ def searchPageView(request) :
 def createPrescriberPageView(request) :
     specialties = Specialty.objects.all()
     states = pd_statedata.objects.all()
+    credentials = Credential.objects.all()
 
     context = {
         "specialties": specialties,
-        "states": states
+        "states": states,
+        "credentials": credentials,
     }
 
     return render(request, 'Opioids/createprescriber.html', context)
@@ -160,11 +163,14 @@ def editPrescriberPageView(request, prescriber_id) :
     prescribers = Prescriber.objects.get(id = prescriber_id)
     specialties = Specialty.objects.all()
     states = pd_statedata.objects.all()
+    credentials = Credential.objects.all()
+
 
     context = {
         "prescribers": prescribers,
         "specialties" : specialties,
-        "states" : states
+        "states" : states,
+        "credentials": credentials
     }
     return render(request, 'Opioids/editprescriber.html', context)
 
@@ -185,11 +191,10 @@ def updatePrescriberPageView(request) :
                 canPrescribeOpioids = True
         except: 
             canPrescribeOpioids = False
-        print(canPrescribeOpioids)
-        prescribers.isopioidprescriber = canPrescribeOpioids
-        prescribers.credential = request.POST['credential']
-        prescribers.specialty = specialty
 
+        prescribers.isopioidprescriber = canPrescribeOpioids
+        prescribers.credential = str(Credential.objects.get(id = request.POST['credential']))
+        prescribers.specialty = specialty
         prescribers.save()
 
     return prescriberInfoPageView(request, prescriber_id)
@@ -199,6 +204,7 @@ def createNewPrescriberPageView(request) :
         prescriber = Prescriber()
         state = pd_statedata.objects.get(id = request.POST['state'])
         specialty = Specialty.objects.get(id = request.POST['specialty'])
+        prescriber.credential = Credential.objects.get(id = request.POST['credential'])
         prescriber.fname = request.POST['fname']
         prescriber.lname = request.POST['lname']
         prescriber.gender = request.POST['gender']
@@ -214,12 +220,11 @@ def createNewPrescriberPageView(request) :
         prescriber.isopioidprescriber = canPrescribeOpioids
         # If it's not on, set it to false.
         
-        prescriber.credential = request.POST['credential']
+        # prescriber.credential = request.POST['credential']
         prescriber.specialty = specialty
 
         prescriber.save()
         
-        print(prescriber.id)
         return prescriberInfoPageView(request, prescriber.id)
     
     return indexPageView(request)
