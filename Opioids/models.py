@@ -57,12 +57,12 @@ class Prescriber_Drug(models.Model):
     def __str__(self):
         return (str(self.prescriber) + ' ' + str(self.drug))
 
-# class Credentialz(models.Model):
-#     credentialz = models.CharField(max_length=255, null=True)
-#     class Meta:
-#         db_table = "credentialz"
-#     def __str__(self):
-#         return str(self.credentialz)
+class Cred(models.Model):
+    cred = models.CharField(max_length=20, null=True)
+    class Meta:
+        db_table = "cred"
+    def __str__(self):
+        return str(self.cred)
 
 
 
