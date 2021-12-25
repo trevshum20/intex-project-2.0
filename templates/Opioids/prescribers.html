@@ -4,6 +4,40 @@
 <div style="margin-left: 50px; margin-top:50px; margin-bottom:10px;">
   <td><a class="center; btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'createPrescriber' %} " >Add Prescriber</a>
 </div>
+<br>
+<div style="margin-left: 100px; margin-right: 100px;" class="text-center">
+  <form name="form" method="post" action="{% url 'search' %}">
+      {% csrf_token %}
+          <div class="input-group">
+          <label for="searchValue" hidden></label>
+          <input name="searchValue" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-lg btn-primary">search</button>
+      </div>
+
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="prescribers" name="optradio" checked>Prescribers
+      </label>
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="drugs" name="optradio">All Drugs
+      </label>
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="opioids" name="optradio">Opioids Only
+      </label>
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="gender" name="optradio">Gender (m or f)
+      </label>
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="credential" name="optradio">Credentials
+      </label>
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="location" name="optradio">State e.g. (UT)
+      </label>
+      <label class="radio-inline radiobuttonsindex">
+          <input type="radio" value="specialty" name="optradio">Specialty
+      </label>     
+  </form>
+</div>
+<br><br>
 <table class="table table-sm table-dark">
     <tr>
         <th style="text-align: left;">Edit/Delete</th>

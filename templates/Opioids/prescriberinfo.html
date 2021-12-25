@@ -9,6 +9,7 @@
                     <div class=" image d-flex flex-column justify-content-center align-items-center"> <img class="rounded-circle z-depth-2" src="{% static 'img/holder.jpg' %}" height="100" width="100" /> <span class="name mt-3">{{prescribers.fname}} {{prescribers.lname}} {{prescribers.credential}}</span>
                         
                         <div class=" d-flex mt-2"> <a href="{% url 'editPrescriber' prescriber_id=prescribers.id %}" class="btn btn-primary">Edit Profile</a> </div>
+                        
                         <div class="text mt-3">Gender: {{prescribers.gender}}</div>
                         <div class="text mt-3">Specialty: {{prescribers.specialty}}</div>
                         <div class="text mt-3">State: {{prescribers.state.state}}</div>
@@ -35,7 +36,11 @@
         <div class="col-8">
             <br>
             <h1 style="color: white;">{{prescribers.fname}}'s Prescriptions</h1>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'rec' prescriber_id=prescribers.id gender=prescribers.gender state=prescribers.state.stateabbrev specialty=prescribers.specialty.specialty isopioidprescriber=prescribers.isopioidprescriber fname=prescribers.fname lname=prescribers.lname %}">View Recommended<br> Drug Prescriptions<br><h6 style="font-size: 8px;">(Takes 30 seconds)</h6></a>
+            {% comment %} <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="{% url 'rec' prescriber_id=prescribers.id gender=prescribers.gender state=prescribers.state.stateabbrev specialty=prescribers.specialty.specialty isopioidprescriber=prescribers.isopioidprescriber fname=prescribers.fname lname=prescribers.lname %}">View Recommended<br> Drug Prescriptions<br><h6 style="font-size: 8px;"></h6></a> {% endcomment %}
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" 
+                href="{% url 'recexample' prescriber_id=prescribers.id fname=prescribers.fname lname=prescribers.lname %}">
+                    View Recommended<br> Drug Prescriptions<br>
+                    <h6 style="font-size: 8px;"></h6></a>
             <br>
             <br>
             <table class="table table-sm table-dark">

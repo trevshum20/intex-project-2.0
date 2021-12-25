@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty, Credentialz
+from .models import Drug, Prescriber, Prescriber_Drug, pd_statedata, Specialty
 #from .models import
 # from Opioids.models import Prescriber
 from django.db.models import Q, Avg, Count, Min, Sum
@@ -16,7 +16,7 @@ def drugsPageView(request) :
 
     drugs_list = Drug.objects.all()
     page = request.GET.get('page',1)
-    paginator = Paginator(drugs_list,8)
+    paginator = Paginator(drugs_list,20)
 
     try:
         drugs = paginator.page(page)
@@ -45,7 +45,7 @@ def viewDrugPageView(request, drug_id) :
 def prescribersPageView(request) :
     prescriber_list = Prescriber.objects.all()
     page = request.GET.get('page',1)
-    paginator = Paginator(prescriber_list,7)
+    paginator = Paginator(prescriber_list,15)
 
     try:
         prescribers = paginator.page(page)
@@ -149,12 +149,12 @@ def searchPageView(request) :
 def createPrescriberPageView(request) :
     specialties = Specialty.objects.all()
     states = pd_statedata.objects.all()
-    credentials = Credential.objects.all()
+    # credentials = Credential.objects.all()
 
     context = {
         "specialties": specialties,
         "states": states,
-        "credentials": credentials,
+        # "credentials": credentials,
     }
 
     return render(request, 'Opioids/createprescriber.html', context)
@@ -163,14 +163,14 @@ def editPrescriberPageView(request, prescriber_id) :
     prescribers = Prescriber.objects.get(id = prescriber_id)
     specialties = Specialty.objects.all()
     states = pd_statedata.objects.all()
-    credentials = Credential.objects.all()
+    # credentials = Credential.objects.all()
 
 
     context = {
         "prescribers": prescribers,
         "specialties" : specialties,
         "states" : states,
-        "credentials": credentials
+        # "credentials": credentials
     }
     return render(request, 'Opioids/editprescriber.html', context)
 
@@ -193,7 +193,8 @@ def updatePrescriberPageView(request) :
             canPrescribeOpioids = False
 
         prescribers.isopioidprescriber = canPrescribeOpioids
-        prescribers.credential = str(Credential.objects.get(id = request.POST['credential']))
+        # prescribers.credential = str(Credential.objects.get(id = request.POST['credential']))
+        prescribers.credential = request.POST['credential']
         prescribers.specialty = specialty
         prescribers.save()
 
@@ -204,7 +205,7 @@ def createNewPrescriberPageView(request) :
         prescriber = Prescriber()
         state = pd_statedata.objects.get(id = request.POST['state'])
         specialty = Specialty.objects.get(id = request.POST['specialty'])
-        prescriber.credential = Credential.objects.get(id = request.POST['credential'])
+        # prescriber.credential = Credential.objects.get(id = request.POST['credential'])
         prescriber.fname = request.POST['fname']
         prescriber.lname = request.POST['lname']
         prescriber.gender = request.POST['gender']
@@ -220,7 +221,7 @@ def createNewPrescriberPageView(request) :
         prescriber.isopioidprescriber = canPrescribeOpioids
         # If it's not on, set it to false.
         
-        # prescriber.credential = request.POST['credential']
+        prescriber.credential = request.POST['credential']
         prescriber.specialty = specialty
 
         prescriber.save()
@@ -339,80 +340,92 @@ def mlResultPageView(request, context) :
 
 def rec(request, prescriber_id, gender, state, specialty, isopioidprescriber, fname, lname):
 
-    url = "http://f544458e-008c-411e-8e20-2c359d80f42d.eastus2.azurecontainer.io/score"
+    # url = "http://f544458e-008c-411e-8e20-2c359d80f42d.eastus2.azurecontainer.io/score"
 
-    payload = json.dumps({
-    "Inputs": {
-        "WebServiceInput2": [
-        {
-            "drugname": "ABILIFY",
-            "isopioid": False,
-            "avg": 7
-        },
-        {
-            "drugname": "ACETAMINOPHEN.CODEINE",
-            "isopioid": True,
-            "avg": 6
-        },
-        {
-            "drugname": "ACYCLOVIR",
-            "isopioid": False,
-            "avg": 2
-        }
-        ],
-        "WebServiceInput3": [
-        {
-            "prescriber_id": 1992883235,
-            "drugname": "LANTUS.SOLOSTAR",
-            "quantity": 49
-        },
-        {
-            "prescriber_id": 1942270848,
-            "drugname": "LANTUS.SOLOSTAR",
-            "quantity": 47
-        },
-        {
-            "prescriber_id": 1891750840,
-            "drugname": "LANTUS.SOLOSTAR",
-            "quantity": 15
-        }
-        ],
-        "WebServiceInput1": [
-        {
-            "id": prescriber_id,
-            "gender": gender,
-            "state_id": state,
-            "specialty": specialty,
-            "isopioidprescriber": isopioidprescriber,
-        },
-        ]
-    },
-    "GlobalParameters": {}
-    })
-    headers = {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer Z5D4bus96cKMXYbVlqRv8Bdd1Ock2MBT'
-    }
+    # payload = json.dumps({
+    # "Inputs": {
+    #     "WebServiceInput2": [
+    #     {
+    #         "drugname": "ABILIFY",
+    #         "isopioid": False,
+    #         "avg": 7
+    #     },
+    #     {
+    #         "drugname": "ACETAMINOPHEN.CODEINE",
+    #         "isopioid": True,
+    #         "avg": 6
+    #     },
+    #     {
+    #         "drugname": "ACYCLOVIR",
+    #         "isopioid": False,
+    #         "avg": 2
+    #     }
+    #     ],
+    #     "WebServiceInput3": [
+    #     {
+    #         "prescriber_id": 1992883235,
+    #         "drugname": "LANTUS.SOLOSTAR",
+    #         "quantity": 49
+    #     },
+    #     {
+    #         "prescriber_id": 1942270848,
+    #         "drugname": "LANTUS.SOLOSTAR",
+    #         "quantity": 47
+    #     },
+    #     {
+    #         "prescriber_id": 1891750840,
+    #         "drugname": "LANTUS.SOLOSTAR",
+    #         "quantity": 15
+    #     }
+    #     ],
+    #     "WebServiceInput1": [
+    #     {
+    #         "id": prescriber_id,
+    #         "gender": gender,
+    #         "state_id": state,
+    #         "specialty": specialty,
+    #         "isopioidprescriber": isopioidprescriber,
+    #     },
+    #     ]
+    # },
+    # "GlobalParameters": {}
+    # })
+    # headers = {
+    # 'Content-Type': 'application/json',
+    # 'Authorization': 'Bearer Z5D4bus96cKMXYbVlqRv8Bdd1Ock2MBT'
+    # }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    # response = requests.request("POST", url, headers=headers, data=payload)
 
-    json_data = json.loads(response.text)
-    drugRecs = []
-    for results in json_data :
-        for output in json_data[results] :
-            for recomendation in json_data[results][output][0]:
-                drugRecs.append(( json_data[results][output][0][recomendation]))
+    # json_data = json.loads(response.text)
+    # drugRecs = []
+    # for results in json_data :
+    #     for output in json_data[results] :
+    #         for recomendation in json_data[results][output][0]:
+    #             drugRecs.append(( json_data[results][output][0][recomendation]))
 
     context = {
-        "drugRecs" : drugRecs,
+        # "drugRecs" : drugRecs,
         "fname" : fname,
         "lname" : lname,
         "prescriber_id" : prescriber_id,
     }
+
     return recResult(request, context)  
 
 def recResult(request, context) :
     return render(request, 'Opioids/recresults.html', context)
+
+def recExample(request, prescriber_id, fname, lname) :
+    context = {
+        "prescriber_id" : prescriber_id,
+        "fname" : fname,
+        "lname"  : lname, 
+    }
+    return render(request, 'Opioids/recexample.html', context)
+
+# def indexPageView(request) :
+#     return render(request, 'Opioids/index.html')
 
 
 
